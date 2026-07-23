@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { finalCtaContent } from "@/content/home";
+import { aboutFinalCtaContent } from "@/content/about";
 import {
   primaryCtaClassName,
   secondaryCtaClassName,
 } from "@/lib/cta-styles";
 
-export function FinalCtaSection() {
+export function AboutFinalCtaSection() {
   const { eyebrow, heading, supportingCopy, primaryCta, secondaryCta } =
-    finalCtaContent;
+    aboutFinalCtaContent;
 
   return (
     <section
-      aria-labelledby="final-cta-heading"
+      aria-labelledby="about-final-cta-heading"
       className="relative overflow-hidden bg-brand-navy-deep"
     >
       <div
@@ -33,7 +33,7 @@ export function FinalCtaSection() {
             {eyebrow}
           </p>
           <h2
-            id="final-cta-heading"
+            id="about-final-cta-heading"
             className="font-display mt-4 text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-white sm:mt-5 sm:text-[2.5rem] lg:text-[3rem] xl:text-[3.75rem]"
           >
             {heading}

@@ -1,37 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
-import { heroContent, heroImage } from "@/content/home";
+import { communityHeroContent } from "@/content/community";
 import { primaryCtaClassName } from "@/lib/cta-styles";
+import { CommunityImageAttribution } from "@/components/sections/community/community-image-attribution";
 
-export function HeroSection() {
+export function CommunityHeroSection() {
   const {
     eyebrow,
     headlineLines,
     supportingCopy,
-    microcopy,
-    trustSignal,
     primaryCta,
     secondaryCta,
-  } = heroContent;
+    image,
+  } = communityHeroContent;
 
   return (
     <section
-      aria-labelledby="hero-heading"
-      className="relative min-h-[620px] overflow-hidden sm:min-h-[700px] lg:min-h-[800px] xl:min-h-[820px]"
+      aria-labelledby="community-hero-heading"
+      className="relative min-h-[620px] overflow-hidden sm:min-h-[700px] lg:min-h-[780px] xl:min-h-[820px]"
     >
       <Image
-        src={heroImage.src}
-        alt={heroImage.alt}
+        src={image.src}
+        alt={image.alt}
         fill
         priority
         quality={85}
         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1400px"
-        className="object-cover object-[78%_42%] sm:object-[72%_center] lg:object-[66%_center]"
+        className="object-cover object-[68%_42%] sm:object-[65%_center] lg:object-[62%_center]"
       />
 
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-linear-to-r from-brand-navy/96 from-0% via-brand-navy/78 via-[24%] via-brand-navy/35 via-[42%] to-transparent to-[68%]"
+        className="absolute inset-0 bg-linear-to-r from-brand-navy/96 from-0% via-brand-navy/74 via-[24%] via-brand-navy/24 via-[42%] to-transparent to-[70%]"
       />
       <div
         aria-hidden="true"
@@ -49,26 +49,18 @@ export function HeroSection() {
           </p>
 
           <h1
-            id="hero-heading"
-            className="font-display mt-4 text-[3rem] font-extrabold leading-[0.95] tracking-[-0.025em] text-white sm:mt-5 sm:text-[4rem] sm:leading-[0.94] md:text-[4.5rem] lg:text-[5.25rem] lg:leading-[0.92] xl:text-[6rem] 2xl:text-[6.5rem]"
+            id="community-hero-heading"
+            className="font-display mt-4 text-[2.75rem] font-extrabold leading-[0.94] tracking-[-0.025em] text-white sm:mt-5 sm:text-[3.5rem] sm:leading-[0.93] md:text-[4rem] lg:text-[4.75rem] lg:leading-[0.92] xl:text-[5.25rem]"
           >
-            {headlineLines.map((line, index) => (
-              <span key={line} className="block">
-                {index === 1 ? (
-                  <span className="text-brand-primary">{line}</span>
-                ) : (
-                  line
-                )}
-              </span>
-            ))}
+            <span className="block">{headlineLines[0]}</span>
+            <span className="block">
+              It&apos;s{" "}
+              <span className="text-brand-primary">Community.</span>
+            </span>
           </h1>
 
-          <p className="mt-5 max-w-md text-base leading-relaxed text-white/85 sm:mt-6 sm:text-lg">
+          <p className="mt-5 max-w-lg font-sans text-base leading-relaxed text-white/85 sm:mt-6 sm:text-lg">
             {supportingCopy}
-          </p>
-
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
-            {microcopy}
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center">
@@ -84,27 +76,13 @@ export function HeroSection() {
               className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-lg border border-white/25 bg-transparent px-6 py-2.5 text-sm font-semibold text-white/90 transition-colors hover:border-white/40 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary motion-reduce:transition-none"
             >
               {secondaryCta.label}
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true">↓</span>
             </Link>
           </div>
-
-          <p className="mt-7 flex flex-col gap-1 font-sans text-sm text-white/70 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3">
-            <span className="font-medium text-white/85">
-              {trustSignal.creators}
-            </span>
-            <span aria-hidden="true" className="hidden text-white/35 sm:inline">
-              •
-            </span>
-            <span>{trustSignal.markets}</span>
-          </p>
         </div>
       </div>
 
-      <p className="sr-only">
-        Photo by{" "}
-        <a href={heroImage.photographerUrl}>{heroImage.photographer}</a> on{" "}
-        <a href={heroImage.photoPageUrl}>Unsplash</a>
-      </p>
+      <CommunityImageAttribution image={image} />
     </section>
   );
 }

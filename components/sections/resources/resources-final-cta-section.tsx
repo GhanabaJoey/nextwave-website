@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { finalCtaContent } from "@/content/home";
+import { resourcesFinalCtaContent } from "@/content/resources";
 import {
   primaryCtaClassName,
   secondaryCtaClassName,
 } from "@/lib/cta-styles";
 
-export function FinalCtaSection() {
+export function ResourcesFinalCtaSection() {
   const { eyebrow, heading, supportingCopy, primaryCta, secondaryCta } =
-    finalCtaContent;
+    resourcesFinalCtaContent;
 
   return (
     <section
-      aria-labelledby="final-cta-heading"
+      aria-labelledby="resources-final-cta-heading"
       className="relative overflow-hidden bg-brand-navy-deep"
     >
       <div
@@ -22,10 +22,6 @@ export function FinalCtaSection() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(0,174,239,0.14),transparent_62%)]"
       />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_45%_35%_at_50%_50%,rgba(0,174,239,0.05),transparent_70%)]"
-      />
 
       <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-28 lg:px-10 lg:py-32">
         <div className="mx-auto max-w-2xl text-center">
@@ -33,7 +29,7 @@ export function FinalCtaSection() {
             {eyebrow}
           </p>
           <h2
-            id="final-cta-heading"
+            id="resources-final-cta-heading"
             className="font-display mt-4 text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-white sm:mt-5 sm:text-[2.5rem] lg:text-[3rem] xl:text-[3.75rem]"
           >
             {heading}

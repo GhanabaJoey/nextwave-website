@@ -9,19 +9,23 @@ function JourneyStep({
   isLast: boolean;
 }) {
   return (
-    <li className="relative pl-14 lg:pl-0">
-      {!isLast && (
+    <li className="relative flex gap-5 lg:block lg:px-2">
+      {!isLast ? (
         <span
           aria-hidden="true"
-          className="absolute left-5 top-12 bottom-0 w-px -translate-x-1/2 bg-brand-primary/35 lg:hidden"
+          className="absolute top-11 bottom-0 left-[1.125rem] w-px bg-white/15 lg:hidden"
         />
-      )}
-      <span className="absolute left-0 top-0 flex size-11 items-center justify-center rounded-full border border-brand-primary/50 bg-brand-primary/10 font-display text-sm font-extrabold text-brand-primary shadow-[0_0_20px_rgba(0,174,239,0.25)] lg:relative lg:mx-auto lg:mb-5">
+      ) : null}
+
+      <span className="relative z-10 flex size-9 shrink-0 items-center justify-center font-display text-sm font-extrabold text-brand-primary-light lg:mx-auto lg:mb-5 lg:size-auto lg:bg-transparent lg:text-base">
         {step.number}
       </span>
-      <div className="rounded-xl border border-white/10 bg-surface-card p-5 lg:bg-transparent lg:p-0 lg:text-center">
-        <h3 className="text-lg font-bold text-white">{step.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-text-muted">
+
+      <div className="min-w-0 pb-8 lg:pb-0 lg:text-center">
+        <h3 className="font-display text-lg font-bold uppercase tracking-[0.06em] text-white sm:text-xl">
+          {step.title}
+        </h3>
+        <p className="mt-2 font-sans text-sm leading-relaxed text-text-muted sm:text-base">
           {step.description}
         </p>
       </div>
@@ -35,37 +39,37 @@ export function CreatorJourneySection() {
   return (
     <section
       aria-labelledby="creator-journey-heading"
-      className="relative overflow-hidden border-b border-white/10 bg-surface-elevated"
+      className="relative overflow-hidden bg-brand-navy-deep"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-linear-to-b from-brand-primary/5 via-transparent to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent"
       />
 
-      <div className="relative mx-auto max-w-6xl px-6 py-16 lg:py-20">
-        <SectionIntro
-          eyebrow={eyebrow}
-          heading={heading}
-          supporting={supportingCopy}
-          headingId="creator-journey-heading"
-          variant="dark"
-        />
+      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-28">
+        <div className="max-w-2xl">
+          <SectionIntro
+            eyebrow={eyebrow}
+            heading={heading}
+            supporting={supportingCopy}
+            headingId="creator-journey-heading"
+            variant="dark"
+          />
+        </div>
 
-        <div className="relative mt-12 lg:mt-16">
+        <ol className="relative mt-12 flex flex-col lg:mt-16 lg:grid lg:grid-cols-4 lg:gap-6">
           <div
             aria-hidden="true"
-            className="absolute top-[1.375rem] right-[12.5%] left-[12.5%] hidden h-px bg-brand-primary/30 lg:block"
+            className="pointer-events-none absolute top-5 right-[10%] left-[10%] hidden h-px bg-white/15 lg:block"
           />
-          <ol className="flex flex-col gap-8 lg:grid lg:grid-cols-4 lg:gap-6">
-            {steps.map((step, index) => (
-              <JourneyStep
-                key={step.id}
-                step={step}
-                isLast={index === steps.length - 1}
-              />
-            ))}
-          </ol>
-        </div>
+          {steps.map((step, index) => (
+            <JourneyStep
+              key={step.id}
+              step={step}
+              isLast={index === steps.length - 1}
+            />
+          ))}
+        </ol>
       </div>
     </section>
   );

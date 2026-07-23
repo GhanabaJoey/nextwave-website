@@ -25,12 +25,12 @@ function FaqAccordionItem({
           aria-expanded={isOpen}
           aria-controls={panelId}
           onClick={onToggle}
-          className="flex w-full items-center justify-between gap-4 rounded-lg px-3 py-4 text-left text-base font-semibold text-white transition-colors hover:text-brand-primary-light sm:px-4"
+          className="flex w-full items-start justify-between gap-4 py-5 text-left font-sans text-base font-semibold text-white transition-colors hover:text-brand-primary-light focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary sm:py-6 sm:text-[17px] motion-reduce:transition-none"
         >
           <span>{item.question}</span>
           <span
             aria-hidden="true"
-            className={`flex size-8 shrink-0 items-center justify-center rounded-full border text-sm transition-transform ${isOpen ? "rotate-45 border-brand-primary bg-brand-primary/15 text-brand-primary shadow-[0_0_12px_rgba(0,174,239,0.35)]" : "border-white/15 text-text-muted"}`}
+            className={`mt-0.5 shrink-0 text-lg leading-none text-brand-primary transition-transform duration-200 motion-reduce:transition-none ${isOpen ? "rotate-45" : ""}`}
           >
             +
           </span>
@@ -41,7 +41,7 @@ function FaqAccordionItem({
         role="region"
         aria-labelledby={buttonId}
         hidden={!isOpen}
-        className="px-3 pb-4 text-sm leading-relaxed text-text-muted sm:px-4"
+        className="pb-5 font-sans text-base leading-relaxed text-text-muted sm:pb-6"
       >
         {item.answer}
       </div>
@@ -51,7 +51,9 @@ function FaqAccordionItem({
 
 export function FaqAccordion() {
   const baseId = useId();
-  const [openId, setOpenId] = useState<string | null>(faqContent.items[0]?.id ?? null);
+  const [openId, setOpenId] = useState<string | null>(
+    faqContent.items[0]?.id ?? null,
+  );
 
   return (
     <div>

@@ -1,17 +1,28 @@
 import type { Metadata } from "next";
+import { AboutFinalCtaSection } from "@/components/sections/about/about-final-cta-section";
+import { AboutHeroSection } from "@/components/sections/about/about-hero-section";
+import { AboutMarketsSection } from "@/components/sections/about/about-markets-section";
+import { AboutMissionSection } from "@/components/sections/about/about-mission-section";
+import { AboutPrinciplesSection } from "@/components/sections/about/about-principles-section";
+import { AboutStorySection } from "@/components/sections/about/about-story-section";
+import { AboutSupportSection } from "@/components/sections/about/about-support-section";
+import { siteConfig } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "About",
+  description: `Learn about ${siteConfig.shortName} — a TikTok LIVE creator community focused on learning, connection, and growth across the UK and Australia.`,
 };
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">About</h1>
-      <p className="mt-4 max-w-2xl text-foreground/80">
-        Content for this page will be added in a later phase. Use the navigation
-        above to visit the other sections of the site.
-      </p>
-    </div>
+    <>
+      <AboutHeroSection />
+      <AboutStorySection />
+      <AboutMissionSection />
+      <AboutPrinciplesSection />
+      <AboutSupportSection />
+      <AboutMarketsSection />
+      <AboutFinalCtaSection />
+    </>
   );
 }

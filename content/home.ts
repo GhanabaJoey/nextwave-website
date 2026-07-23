@@ -1,12 +1,14 @@
 export const heroContent = {
-  eyebrow: "TikTok LIVE Creator Community",
-  headlineLines: [
-    "Grow Your LIVE.",
-    "Build Your Community.",
-    "Reach Your Potential.",
-  ],
+  eyebrow: "NextWave Creator Network",
+  headlineLines: ["Create.", "Go LIVE.", "Grow Together."] as const,
   supportingCopy:
-    "NextWave Creator Network helps TikTok LIVE creators develop their content, grow their community, improve their earning potential, and connect with other ambitious creators through training, support and exclusive community experiences.",
+    "A creator community helping LIVE creators develop their skills, connect with others and unlock more opportunities.",
+  microcopy:
+    "For creators serious about developing their LIVE presence.",
+  trustSignal: {
+    creators: "40+ Creators",
+    markets: "United Kingdom • Australia",
+  },
   primaryCta: {
     label: "Apply to Join",
     href: "/apply",
@@ -15,52 +17,51 @@ export const heroContent = {
     label: "Discover NextWave",
     href: "/about",
   },
-  trustLine: "Supporting 40+ creators across the UK & Australia.",
 } as const;
 
 /** Unsplash License — free commercial use: https://unsplash.com/license */
 export const heroImage = {
-  src: "https://images.unsplash.com/photo-1673767298275-769b08b4f675",
-  alt: "A creator seated at a table, recording video content in front of a camera and studio setup.",
+  src: "https://images.unsplash.com/photo-1659540517163-e9a29f4d1251",
+  alt: "A streamer wearing headphones at a desk with multiple monitors, a broadcast microphone and colourful blue and purple creator lighting.",
   photoPageUrl:
-    "https://unsplash.com/photos/a-woman-sitting-at-a-table-in-front-of-a-camera-ZVUkfLW_eck",
-  photographer: "Videodeck .co",
-  photographerUrl: "https://unsplash.com/@videodeck",
+    "https://unsplash.com/photos/a-man-wearing-headphones-and-sitting-at-a-desk-with-a-computer-QJjuS_DIpEY",
+  photographer: "Samsung Memory",
+  photographerUrl: "https://unsplash.com/@samsungmemory",
 } as const;
 
 export const networkStatsContent = {
-  eyebrow: "The NextWave Network",
-  heading: "A growing community built for creators.",
+  eyebrow: "Network Proof",
+  heading: "Built for creators who want more from LIVE.",
   supportingText:
-    "NextWave brings ambitious TikTok LIVE creators together with the support, training and community experiences they need to keep developing.",
+    "NextWave combines creator development, community and shared experiences in one growing network.",
   stats: [
     {
       id: "creators",
       value: "40+",
       label: "Creators",
-      description: "Part of the growing NextWave community.",
+      description: "A growing community of LIVE creators.",
       accent: "primary",
     },
     {
       id: "markets",
       value: "2",
       label: "Markets",
-      description: "Supporting creators across the UK and Australia.",
+      description: "United Kingdom and Australia.",
       accent: "primary",
     },
     {
       id: "training",
       value: "Monthly",
-      label: "Creator Training",
-      description: "Regular sessions focused on development and growth.",
+      label: "Training",
+      description: "Regular creator-development opportunities.",
       accent: "primary",
     },
     {
       id: "events",
-      value: "Community",
-      label: "Events & Recognition",
-      description: "LIVE Wars, creator experiences and Awards Night.",
-      accent: "gold",
+      value: "LIVE",
+      label: "Events",
+      description: "Community experiences including LIVE Wars.",
+      accent: "primary",
     },
   ],
 } as const;
@@ -68,65 +69,59 @@ export const networkStatsContent = {
 export type NetworkStat = (typeof networkStatsContent.stats)[number];
 
 export const whyNextwaveContent = {
-  eyebrow: "Why Nextwave",
-  heading: "More than a network. A place to grow.",
+  eyebrow: "Why NextWave",
+  heading: "Why join NextWave?",
   supportingCopy:
-    "Going LIVE consistently is easier when you have the right people, guidance and opportunities around you. NextWave gives creators a community designed to support their development both on and beyond LIVE.",
+    "Going LIVE is easier with the right people, guidance and opportunities around you.",
   image: {
-    src: "https://images.unsplash.com/photo-1734174050925-3dca7c6bbad1",
-    alt: "A group of creators gathered together in a room, sharing ideas and collaborating.",
+    src: "https://images.unsplash.com/photo-1753162660995-52218587ce71",
+    alt: "Two young content creators filming together in a bright studio with a camera, sketches and production gear visible as they create social media content.",
     photoPageUrl:
-      "https://unsplash.com/photos/a-group-of-people-sitting-around-each-other-in-a-room-pyXVTh3zdCA",
-    photographer: "Frederick Shaw",
-    photographerUrl: "https://unsplash.com/@fshawphoto",
+      "https://unsplash.com/photos/two-women-are-filming-a-video-tvePcqY52-4",
+    photographer: "Vitaly Gariev",
+    photographerUrl: "https://unsplash.com/@silverkblack",
   },
   benefits: [
     {
       id: "development",
       title: "Creator Development",
       description:
-        "Get practical guidance designed to help you improve your LIVE content, confidence, consistency and overall creator presence.",
-      icon: "development",
-      accent: "primary",
-    },
-    {
-      id: "training",
-      title: "Monthly Training",
-      description:
-        "Join regular training sessions covering creator growth, LIVE strategy, content development and opportunities on TikTok LIVE.",
-      icon: "training",
+        "Practical guidance to help creators improve their LIVE content, confidence and consistency.",
       accent: "primary",
     },
     {
       id: "community",
-      title: "Community Support",
+      title: "Community",
       description:
-        "Connect with other ambitious creators, share experiences, learn from each other and grow as part of an active community.",
-      icon: "community",
+        "Connect with creators who understand the LIVE journey and share the same ambition to grow.",
       accent: "primary",
     },
     {
-      id: "events",
-      title: "Events & Competition",
+      id: "training",
+      title: "Training",
       description:
-        "Take part in experiences such as LIVE Wars, community activities and creator-focused events that make growth more engaging.",
-      icon: "events",
+        "Learn through regular creator-development opportunities focused on LIVE strategy and growth.",
+      accent: "primary",
+    },
+    {
+      id: "experiences",
+      title: "LIVE Experiences",
+      description:
+        "Take part in community activities such as LIVE Wars and other shared creator experiences.",
       accent: "primary",
     },
     {
       id: "recognition",
-      title: "Recognition & Rewards",
+      title: "Recognition",
       description:
-        "Celebrate creator progress through recognition, achievements and special community moments including the NextWave Awards Night.",
-      icon: "recognition",
+        "Celebrate progress and creator milestones through community recognition moments.",
       accent: "gold",
     },
     {
-      id: "growth",
-      title: "Growth Opportunities",
+      id: "opportunity",
+      title: "Opportunity",
       description:
-        "Access opportunities designed to help committed creators develop their presence, expand their network and reach their potential.",
-      icon: "growth",
+        "Become part of a growing creator network with room to develop your presence over time.",
       accent: "primary",
     },
   ],
@@ -136,38 +131,37 @@ export type WhyNextwaveBenefit =
   (typeof whyNextwaveContent.benefits)[number];
 
 export const creatorJourneyContent = {
-  eyebrow: "Your NextWave Journey",
-  heading: "From application to active creator.",
-  supportingCopy:
-    "Joining NextWave is designed to be simple. We look for creators who are ready to develop, stay consistent and become active members of the community.",
+  eyebrow: "How It Works",
+  heading: "Your NextWave journey.",
+  supportingCopy: "Joining should feel clear and straightforward.",
   steps: [
     {
       id: "apply",
       number: "01",
       title: "Apply",
       description:
-        "Submit your application and tell us about yourself, your content and your TikTok LIVE goals.",
+        "Tell us about yourself and your creator journey.",
     },
     {
-      id: "review",
+      id: "connect",
       number: "02",
-      title: "Get Reviewed",
+      title: "Connect",
       description:
-        "The NextWave team reviews your application to make sure the community is the right fit for you.",
+        "If your application is suitable, we'll connect with you about the next steps.",
     },
     {
-      id: "join",
+      id: "start",
       number: "03",
-      title: "Join the Network",
+      title: "Get Started",
       description:
-        "Once accepted, you'll be welcomed into the NextWave community and introduced to the support available to you.",
+        "Join the network and begin exploring creator support and community opportunities.",
     },
     {
       id: "grow",
       number: "04",
-      title: "Learn, Connect & Grow",
+      title: "Grow",
       description:
-        "Take part in training, community activities, LIVE opportunities and experiences designed to support your development.",
+        "Keep learning, creating and developing your LIVE presence.",
     },
   ],
 } as const;
@@ -176,73 +170,77 @@ export type CreatorJourneyStep =
   (typeof creatorJourneyContent.steps)[number];
 
 export const communityPreviewContent = {
-  eyebrow: "Beyond the LIVE",
-  heading: "A community you can be part of.",
+  eyebrow: "Community & Events",
+  heading: "More than a network.",
   supportingCopy:
-    "NextWave is about more than going LIVE. Our creators have opportunities to connect, compete, learn and celebrate progress together.",
+    "NextWave brings creators together through competition, learning, recognition and shared experiences.",
   cta: {
-    label: "Explore Our Community",
+    label: "Explore the Community",
     href: "/community",
   },
   experiences: [
     {
       id: "live-wars",
-      title: "LIVE Wars",
+      category: "LIVE Wars",
+      action: "Compete",
       description:
-        "Creator competitions designed to bring energy, friendly competition and community engagement to TikTok LIVE.",
+        "Creator competitions that bring energy, friendly rivalry and community engagement to TikTok LIVE.",
       accent: "primary",
       image: {
-        src: "https://images.unsplash.com/photo-1759393852314-59dc00faeed3",
-        alt: "A creator recording content on a smartphone mounted on a tripod in a modern setup.",
+        src: "https://images.unsplash.com/photo-1764162051353-0d3aef372c56",
+        alt: "A smartphone recording a creator speaking during a live stream, with studio lighting and production gear visible.",
         photoPageUrl:
-          "https://unsplash.com/photos/woman-recording-herself-on-a-smartphone-tripod-3FTq0q3QZc8",
-        photographer: "Afffect",
-        photographerUrl: "https://unsplash.com/@afffect",
+          "https://unsplash.com/photos/smartphone-recording-a-man-speaking-on-live-stream-eLcArm7e7G8",
+        photographer: "Detail .co",
+        photographerUrl: "https://unsplash.com/@detailvideo",
       },
     },
     {
       id: "training",
-      title: "Monthly Creator Training",
+      category: "Creator Training",
+      action: "Learn",
       description:
-        "Regular sessions focused on LIVE strategy, creator development, content and growth.",
+        "Regular sessions focused on LIVE strategy, creator development and practical growth.",
       accent: "primary",
       image: {
-        src: "https://images.unsplash.com/photo-1755548836775-39456093a0c3",
-        alt: "Creators gathered in a classroom-style setting for a group learning session.",
+        src: "https://images.unsplash.com/photo-1745848413060-0827ec268cda",
+        alt: "A creator filming video content with a camera and monitor in a modern production setup focused on content creation.",
         photoPageUrl:
-          "https://unsplash.com/photos/group-of-people-gathered-in-a-classroom-setting-eUM4Skbrcsc",
-        photographer: "Frederick Shaw",
-        photographerUrl: "https://unsplash.com/@fshawphoto",
-      },
-    },
-    {
-      id: "awards",
-      title: "NextWave Awards Night",
-      description:
-        "A special celebration recognising creator progress, achievements and standout moments across the community.",
-      accent: "gold",
-      image: {
-        src: "https://images.unsplash.com/photo-1764874299025-d8b2251f307d",
-        alt: "An award trophy displayed under warm light, representing recognition and celebration.",
-        photoPageUrl:
-          "https://unsplash.com/photos/a-silver-award-trophy-stands-on-a-table-fyN_dAzrG8A",
-        photographer: "Wesley Tingey",
-        photographerUrl: "https://unsplash.com/@wesleyphotography",
+          "https://unsplash.com/photos/filming-a-video-with-the-camera-in-focus-Gz4AEq4QN5g",
+        photographer: "dlxmedia.hu",
+        photographerUrl: "https://unsplash.com/@dlxmedia",
       },
     },
     {
       id: "community",
-      title: "Creator Community",
+      category: "Creator Community",
+      action: "Connect",
       description:
-        "A space for creators to connect, exchange experiences, support each other and build relationships.",
+        "A space to exchange experiences, support each other and build relationships with other creators.",
       accent: "primary",
       image: {
-        src: "https://images.unsplash.com/photo-1632835221568-8f6e715f7c54",
-        alt: "Creators sitting together around a table, collaborating and sharing ideas.",
+        src: "https://images.unsplash.com/photo-1695014192203-291edf9e4842",
+        alt: "A group of creators collaborating around a camera on a film-style content shoot.",
         photoPageUrl:
-          "https://unsplash.com/photos/a-group-of-people-sitting-around-a-wooden-table-bqhu2I58r34",
-        photographer: "Redmind Studio",
-        photographerUrl: "https://unsplash.com/@redmind_studio",
+          "https://unsplash.com/photos/a-group-of-people-standing-around-a-camera-Ony-jQSBvNY",
+        photographer: "Daniel",
+        photographerUrl: "https://unsplash.com/@unsplashbydan",
+      },
+    },
+    {
+      id: "awards",
+      category: "Awards & Recognition",
+      action: "Celebrate",
+      description:
+        "Community moments that recognise creator progress, achievements and standout contributions.",
+      accent: "gold",
+      image: {
+        src: "https://images.unsplash.com/photo-1527269534026-c86f4009eace",
+        alt: "People celebrating together with confetti at a lively event, representing recognition and community achievement.",
+        photoPageUrl:
+          "https://unsplash.com/photos/people-covered-by-confetti-GUAcpXPyFRc",
+        photographer: "Keith Luke",
+        photographerUrl: "https://unsplash.com/@lukephotography",
       },
     },
   ],
@@ -253,63 +251,51 @@ export type CommunityExperience =
 
 export const testimonialsContent = {
   eyebrow: "Creator Voices",
-  heading: "Built around the people who make it possible.",
-  placeholderTitle: "Creator stories coming soon.",
-  placeholderText:
-    "We're gathering experiences from members of the NextWave community and will be sharing their stories here.",
+  heading: "Real stories are coming.",
+  copy:
+    "As the NextWave community grows, we'll share experiences and stories directly from creators across the network.",
+  label: "Creator stories coming soon.",
 } as const;
 
 export const faqContent = {
-  eyebrow: "Questions & Answers",
-  heading: "Everything you need to know before applying.",
+  eyebrow: "FAQ",
+  heading: "Questions before you apply?",
   items: [
     {
+      id: "what-is-nextwave",
+      question: "What is NextWave Creator Network?",
+      answer:
+        "NextWave is a creator community focused on helping TikTok LIVE creators develop their skills, connect with others and access community opportunities.",
+    },
+    {
       id: "who-can-apply",
-      question: "Who can apply to NextWave?",
+      question: "Who can apply?",
       answer:
-        "NextWave is open to TikTok LIVE creators who are serious about developing their content, staying consistent and becoming active members of a creator community.",
-    },
-    {
-      id: "cost",
-      question: "Does it cost money to join?",
-      answer:
-        "There is no application fee to apply to NextWave Creator Network.",
-    },
-    {
-      id: "following",
-      question: "Do I need a large following?",
-      answer:
-        "No. We look beyond follower count. Consistency, attitude, potential and willingness to develop are important when applications are reviewed.",
+        "Creators who are serious about developing their LIVE presence, staying consistent and becoming active members of a creator community.",
     },
     {
       id: "countries",
-      question: "What countries does NextWave currently support?",
+      question: "Which countries does NextWave currently support?",
       answer:
-        "NextWave currently supports creators in the United Kingdom and Australia. Availability may expand as the network grows.",
+        "NextWave currently supports creators in the United Kingdom and Australia.",
+    },
+    {
+      id: "experience-required",
+      question: "Do I need to already be an experienced LIVE creator?",
+      answer:
+        "No. We look at consistency, attitude, potential and willingness to develop — not just follower count or experience level.",
     },
     {
       id: "after-apply",
       question: "What happens after I apply?",
       answer:
-        "Your application will be reviewed by the NextWave team. If you meet the current requirements, we'll provide the next steps for joining the network.",
+        "Your application is reviewed by the NextWave team. If you're a suitable fit, we'll connect with you about the next steps.",
     },
     {
-      id: "support",
-      question: "What support will I receive?",
+      id: "what-offered",
+      question: "What does NextWave offer creators?",
       answer:
-        "Creators can access community support, development opportunities, monthly training, events and other experiences offered through NextWave.",
-    },
-    {
-      id: "live-regularly",
-      question: "Do I have to go LIVE regularly?",
-      answer:
-        "Yes. NextWave is designed for active TikTok LIVE creators, so consistency and participation are important.",
-    },
-    {
-      id: "leave",
-      question: "Can I leave the network?",
-      answer:
-        "Creators should follow the applicable TikTok LIVE agency/network procedures and any relevant NextWave guidelines. More information can be provided when joining.",
+        "Community support, creator development, monthly training, LIVE experiences such as LIVE Wars, and recognition moments across the network.",
     },
   ],
 } as const;
@@ -317,16 +303,16 @@ export const faqContent = {
 export type FaqItem = (typeof faqContent.items)[number];
 
 export const finalCtaContent = {
-  eyebrow: "Ready for your next wave?",
-  heading: "Your next chapter as a creator could start here.",
+  eyebrow: "Your next wave starts here",
+  heading: "Ready to take your LIVE journey further?",
   supportingCopy:
-    "Join a growing community of TikTok LIVE creators focused on development, connection and creating better opportunities together.",
+    "Join a creator community built around learning, connection, experiences and progress.",
   primaryCta: {
     label: "Apply to Join",
     href: "/apply",
   },
   secondaryCta: {
-    label: "Learn About NextWave",
+    label: "Discover NextWave",
     href: "/about",
   },
 } as const;

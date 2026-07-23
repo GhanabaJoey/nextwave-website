@@ -8,9 +8,14 @@ export function FaqSection() {
   return (
     <section
       aria-labelledby="faq-heading"
-      className="border-b border-white/10 bg-brand-navy"
+      className="relative bg-brand-navy"
     >
-      <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent"
+      />
+
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-3xl">
           <SectionIntro
             eyebrow={eyebrow}
@@ -20,7 +25,7 @@ export function FaqSection() {
             align="center"
           />
 
-          <div className="mt-10 rounded-2xl border border-white/10 bg-surface-card p-2 sm:p-3">
+          <div className="mt-10 border-t border-white/10 lg:mt-12">
             <FaqAccordion />
           </div>
         </div>

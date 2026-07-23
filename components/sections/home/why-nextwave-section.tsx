@@ -5,95 +5,19 @@ import {
 } from "@/content/home";
 import { SectionIntro } from "@/components/ui/section-intro";
 
-type BenefitIconName = WhyNextwaveBenefit["icon"];
-
-function BenefitIcon({ name }: { name: BenefitIconName }) {
-  const props = {
-    width: 22,
-    height: 22,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.75,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-    "aria-hidden": true as const,
-  };
-
-  switch (name) {
-    case "development":
-      return (
-        <svg {...props}>
-          <path d="M12 20V10" />
-          <path d="M18 20V4" />
-          <path d="M6 20v-4" />
-        </svg>
-      );
-    case "training":
-      return (
-        <svg {...props}>
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-          <path d="M8 7h8" />
-          <path d="M8 11h6" />
-        </svg>
-      );
-    case "community":
-      return (
-        <svg {...props}>
-          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-        </svg>
-      );
-    case "events":
-      return (
-        <svg {...props}>
-          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-          <path d="M4 22h16" />
-          <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22" />
-          <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22" />
-          <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-        </svg>
-      );
-    case "recognition":
-      return (
-        <svg {...props}>
-          <circle cx="12" cy="8" r="6" />
-          <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-        </svg>
-      );
-    case "growth":
-      return (
-        <svg {...props}>
-          <path d="m3 17 6-6 4 4 8-8" />
-          <path d="M14 7h7v7" />
-        </svg>
-      );
-    default: {
-      const _exhaustive: never = name;
-      return _exhaustive;
-    }
-  }
-}
-
 function BenefitItem({ benefit }: { benefit: WhyNextwaveBenefit }) {
   const isGold = benefit.accent === "gold";
-  const iconWrapClass = isGold
-    ? "border-brand-accent/30 bg-brand-accent/10 text-brand-accent"
-    : "border-brand-primary/30 bg-brand-primary/10 text-brand-primary";
 
   return (
-    <li className="rounded-xl border border-white/10 bg-surface-card p-5 transition-colors hover:border-brand-primary/25 hover:bg-surface-card-hover">
-      <div
-        className={`inline-flex size-11 items-center justify-center rounded-lg border ${iconWrapClass}`}
+    <li className="border-b border-white/10 py-5 last:border-b-0 sm:py-6">
+      <h3
+        className={`font-display text-xl font-bold leading-snug sm:text-2xl ${
+          isGold ? "text-brand-accent" : "text-white"
+        }`}
       >
-        <BenefitIcon name={benefit.icon} />
-      </div>
-      <h3 className="mt-4 text-base font-bold text-white">{benefit.title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-text-muted">
+        {benefit.title}
+      </h3>
+      <p className="mt-2 max-w-md font-sans text-base leading-relaxed text-text-muted">
         {benefit.description}
       </p>
     </li>
@@ -107,43 +31,54 @@ export function WhyNextwaveSection() {
   return (
     <section
       aria-labelledby="why-nextwave-heading"
-      className="border-b border-white/10 bg-brand-navy"
+      className="relative overflow-hidden bg-brand-navy"
     >
-      <div className="mx-auto max-w-6xl px-6 py-16 lg:py-20">
-        <SectionIntro
-          eyebrow={eyebrow}
-          heading={heading}
-          supporting={supportingCopy}
-          headingId="why-nextwave-heading"
-          variant="dark"
-        />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent"
+      />
 
-        <figure className="relative mt-10 overflow-hidden rounded-2xl border border-white/10 shadow-xl shadow-black/30 lg:mt-12">
-          <div className="relative aspect-21/9 min-h-48 sm:min-h-56">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              fill
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-linear-to-r from-brand-navy/80 via-brand-navy/35 to-brand-navy/20"
-            />
-          </div>
-          <figcaption className="sr-only">
-            Photo by{" "}
-            <a href={image.photographerUrl}>{image.photographer}</a> on{" "}
-            <a href={image.photoPageUrl}>Unsplash</a>
-          </figcaption>
-        </figure>
+      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-28">
+        <div className="max-w-2xl">
+          <SectionIntro
+            eyebrow={eyebrow}
+            heading={heading}
+            supporting={supportingCopy}
+            headingId="why-nextwave-heading"
+            variant="dark"
+          />
+        </div>
 
-        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3 lg:gap-5">
-          {benefits.map((benefit) => (
-            <BenefitItem key={benefit.id} benefit={benefit} />
-          ))}
-        </ul>
+        <div className="mt-12 flex flex-col gap-12 lg:mt-16 lg:grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-start lg:gap-14 xl:gap-16">
+          <figure className="relative lg:sticky lg:top-28">
+            <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10">
+              <div className="relative aspect-4/3 min-h-[240px] sm:min-h-[300px] lg:aspect-[4/5] lg:min-h-[460px]">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className="object-cover object-center"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-linear-to-t from-brand-navy/70 via-transparent to-transparent"
+                />
+              </div>
+            </div>
+            <figcaption className="sr-only">
+              Photo by{" "}
+              <a href={image.photographerUrl}>{image.photographer}</a> on{" "}
+              <a href={image.photoPageUrl}>Unsplash</a>
+            </figcaption>
+          </figure>
+
+          <ul className="min-w-0 border-t border-white/10 lg:border-t-0 lg:pt-2">
+            {benefits.map((benefit) => (
+              <BenefitItem key={benefit.id} benefit={benefit} />
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
