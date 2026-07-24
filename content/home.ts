@@ -21,12 +21,12 @@ export const heroContent = {
 
 /** Unsplash License — free commercial use: https://unsplash.com/license */
 export const heroImage = {
-  src: "https://images.unsplash.com/photo-1659540517163-e9a29f4d1251",
-  alt: "A streamer wearing headphones at a desk with multiple monitors, a broadcast microphone and colourful blue and purple creator lighting.",
+  src: "https://images.unsplash.com/photo-1676380364777-d53c900178fa",
+  alt: "A content creator wearing headphones at a podcast studio desk with a broadcast microphone, laptop and vibrant purple and blue studio lighting.",
   photoPageUrl:
-    "https://unsplash.com/photos/a-man-wearing-headphones-and-sitting-at-a-desk-with-a-computer-QJjuS_DIpEY",
-  photographer: "Samsung Memory",
-  photographerUrl: "https://unsplash.com/@samsungmemory",
+    "https://unsplash.com/photos/a-woman-sitting-in-front-of-a-laptop-computer-R5O3KIf0kgI",
+  photographer: "Videodeck .co",
+  photographerUrl: "https://unsplash.com/@videodeck",
 } as const;
 
 export const networkStatsContent = {

@@ -26,7 +26,7 @@ export function HeroSection() {
         priority
         quality={85}
         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1400px"
-        className="object-cover object-[78%_42%] sm:object-[72%_center] lg:object-[66%_center]"
+        className="object-cover object-[88%_45%] sm:object-[68%_center] lg:object-[62%_center]"
       />
 
       <div
