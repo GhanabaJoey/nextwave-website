@@ -25,7 +25,7 @@ export function ContactMainSection() {
 
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
         <div className="lg:grid lg:grid-cols-5 lg:gap-14 xl:gap-16">
-          <div className="lg:col-span-2">
+          <div className="min-w-0 lg:col-span-2">
             <p className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-brand-primary">
               {eyebrow}
             </p>
@@ -69,7 +69,7 @@ export function ContactMainSection() {
             </div>
           </div>
 
-          <div className="mt-14 lg:col-span-3 lg:mt-0">
+          <div className="mt-14 min-w-0 lg:col-span-3 lg:mt-0">
             <ContactForm />
           </div>
         </div>

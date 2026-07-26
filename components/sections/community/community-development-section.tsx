@@ -33,9 +33,9 @@ export function CommunityDevelopmentSection() {
           </p>
         </div>
 
-        <ul className="mt-12 grid max-w-5xl gap-0 divide-y divide-white/10 border-t border-white/10 sm:mt-14 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        <ul className="mt-12 grid max-w-5xl gap-0 divide-y divide-white/10 border-t border-white/10 md:mt-14 md:grid-cols-3 md:divide-x md:divide-y-0">
           {topics.map((topic) => (
-            <li key={topic.id} className="py-7 sm:px-8 sm:py-8 sm:first:pl-0">
+            <li key={topic.id} className="py-7 md:px-8 md:py-8 md:first:pl-0">
               <h3 className="font-display text-xl font-bold text-white">
                 {topic.title}
               </h3>

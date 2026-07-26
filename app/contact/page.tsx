@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { ContactHeroSection } from "@/components/sections/contact/contact-hero-section";
 import { ContactMainSection } from "@/components/sections/contact/contact-main-section";
 import { ContactReassuranceSection } from "@/components/sections/contact/contact-reassurance-section";
-import { siteConfig } from "@/content/site";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact",
-  description: `Contact ${siteConfig.shortName} with questions about the creator network, community events or general enquiries.`,
-};
+  description:
+    "Contact NextWave Creator Network with questions about the creator community, events or general enquiries.",
+});
 
 export default function ContactPage() {
   return (

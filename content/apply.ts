@@ -58,9 +58,13 @@ export const applyFormContent = {
     "Keep it simple. We only ask for information that helps us understand you as a creator.",
   requiredNote: "Required fields are marked with *",
   submissionNotice:
-    "Application delivery is not connected yet. Submissions will not be stored until we connect our backend.",
-  deliveryNotConnectedMessage:
-    "Your application has not been submitted — delivery is not connected yet.",
+    "Complete the form below to apply. Required fields are marked with *.",
+  successMessage:
+    "Application received. Thank you for applying to NextWave Creator Network.",
+  successSecondaryMessage:
+    "Your application has been submitted for review.",
+  submitErrorMessage:
+    "We couldn't submit your application right now. Please try again.",
   privacyNote:
     "Please only provide information relevant to your creator application.",
   submitLabel: "Submit Application",

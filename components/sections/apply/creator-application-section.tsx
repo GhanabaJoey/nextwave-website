@@ -16,7 +16,7 @@ export function CreatorApplicationSection() {
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent"
       />
 
-      <div className="mx-auto max-w-[860px] px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
+      <div className="mx-auto min-w-0 max-w-[860px] px-5 py-16 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
         <p className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-brand-primary">
           {eyebrow}
         </p>

@@ -30,8 +30,8 @@ export function ContactHeroSection() {
       />
 
       <div className="relative z-10 mx-auto flex min-h-[inherit] max-w-7xl flex-col justify-center px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
-        <div className="max-w-2xl">
-          <p className="flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-[0.28em] text-brand-primary">
+        <div className="min-w-0 max-w-2xl">
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-primary sm:text-xs sm:tracking-[0.28em]">
             <span
               aria-hidden="true"
               className="h-px w-5 shrink-0 bg-brand-primary/70 sm:w-6"
@@ -41,7 +41,7 @@ export function ContactHeroSection() {
 
           <h1
             id="contact-hero-heading"
-            className="font-display mt-5 text-[2.5rem] font-extrabold leading-[0.98] tracking-[-0.025em] text-white sm:text-[3.25rem] md:text-[3.75rem] lg:text-[4.25rem] xl:text-[5rem]"
+            className="font-display mt-5 text-[2.35rem] font-extrabold leading-[0.98] tracking-[-0.025em] text-white sm:text-[3.25rem] md:text-[3.75rem] lg:text-[4.25rem] xl:text-[5rem]"
           >
             <span className="block">{headlineLines[0]}</span>
             <span className="block text-brand-primary">{headlineLines[1]}</span>

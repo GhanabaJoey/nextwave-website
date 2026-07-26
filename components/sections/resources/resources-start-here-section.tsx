@@ -25,13 +25,13 @@ export function ResourcesStartHereSection() {
           variant="dark"
         />
 
-        <ol className="mt-12 grid grid-cols-1 gap-0 sm:grid-cols-2 lg:mt-14 lg:gap-x-12 lg:gap-y-0">
+        <ol className="mt-12 grid grid-cols-1 gap-0 md:grid-cols-2 lg:mt-14 lg:gap-x-12 lg:gap-y-0">
           {fundamentals.map((item, index) => (
             <li
               key={item.id}
-              className={`border-t border-white/10 py-7 sm:py-8 ${
-                index % 2 === 1 ? "sm:border-l sm:border-white/10 sm:pl-10 lg:pl-12" : ""
-              } ${index >= 2 ? "sm:border-t sm:border-white/10" : ""}`}
+              className={`border-t border-white/10 py-7 md:py-8 ${
+                index % 2 === 1 ? "md:border-l md:border-white/10 md:pl-10 lg:pl-12" : ""
+              } ${index >= 2 ? "md:border-t md:border-white/10" : ""}`}
             >
               <div className="flex gap-5 sm:gap-6">
                 <p

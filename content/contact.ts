@@ -57,9 +57,12 @@ export const contactMainContent = {
 
 export const contactFormContent = {
   submissionNotice:
-    "Online form delivery is not connected yet. Messages will not be sent until we connect our messaging service.",
-  deliveryNotConnectedMessage:
-    "Your message has not been sent — form delivery is not connected yet.",
+    "Send us a message below and we'll point you in the right direction.",
+  successMessage:
+    "Message received. Thank you for contacting NextWave Creator Network.",
+  successSecondaryMessage: "Your enquiry has been sent to our team.",
+  submitErrorMessage:
+    "We couldn't send your message right now. Please try again.",
   privacyNote:
     "Please only share information relevant to your enquiry.",
   enquiryTypes: [
@@ -83,8 +86,23 @@ export const contactFormContent = {
     emailInvalid: "Please enter a valid email address.",
     enquiryTypeRequired: "Please select an enquiry type.",
     messageRequired: "Please enter a message.",
+    formSummary: "Please complete all required fields before sending.",
   },
 } as const;
+
+export type ContactFormValues = {
+  name: string;
+  email: string;
+  enquiryType: string;
+  message: string;
+};
+
+export const emptyContactValues: ContactFormValues = {
+  name: "",
+  email: "",
+  enquiryType: "",
+  message: "",
+};
 
 export const contactReassuranceContent = {
   eyebrow: "What to expect",

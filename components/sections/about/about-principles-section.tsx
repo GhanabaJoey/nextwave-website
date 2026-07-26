@@ -57,7 +57,7 @@ export function AboutPrinciplesSection() {
       <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-28">
         <h2
           id="about-principles-heading"
-          className="font-display max-w-2xl text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-white sm:text-[2.5rem] lg:text-[3rem] xl:text-[3.75rem]"
+          className="font-display max-w-2xl text-balance text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-white sm:text-[2.5rem] lg:text-[3rem] xl:text-[3.75rem]"
         >
           {heading}
         </h2>

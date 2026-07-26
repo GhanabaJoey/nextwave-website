@@ -6,12 +6,13 @@ import { AboutMissionSection } from "@/components/sections/about/about-mission-s
 import { AboutPrinciplesSection } from "@/components/sections/about/about-principles-section";
 import { AboutStorySection } from "@/components/sections/about/about-story-section";
 import { AboutSupportSection } from "@/components/sections/about/about-support-section";
-import { siteConfig } from "@/content/site";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "About",
-  description: `Learn about ${siteConfig.shortName} — a TikTok LIVE creator community focused on learning, connection, and growth across the UK and Australia.`,
-};
+  description:
+    "Learn about NextWave Creator Network — a TikTok LIVE creator community focused on development, connection, and shared experiences across the UK and Australia.",
+});
 
 export default function AboutPage() {
   return (

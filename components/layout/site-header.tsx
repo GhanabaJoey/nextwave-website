@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import {
   headerApplyCta,
   headerBrandContent,
@@ -71,6 +71,7 @@ function NavLinkItem({
 export function SiteHeader() {
   const pathname = usePathname();
   const mobileNavId = useId();
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
   const hasTransparentHero = transparentHeroRoutes.has(pathname);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuPath, setMobileMenuPath] = useState<string | null>(null);
@@ -93,6 +94,21 @@ export function SiteHeader() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+
+      event.preventDefault();
+      setMobileMenuPath(null);
+      menuToggleRef.current?.focus();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
   const transparent = hasTransparentHero && !scrolled;
 
   const headerClass = transparent
@@ -109,16 +125,16 @@ export function SiteHeader() {
 
   return (
     <header className={headerClass}>
-      <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 lg:h-20 lg:gap-6 lg:px-10">
+      <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between gap-3 px-5 sm:px-8 lg:h-20 lg:gap-6 lg:px-10">
         <Link
           href="/"
-          className="group shrink-0 leading-none focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary"
+          className="group min-w-0 shrink leading-none focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary"
         >
           <span className="font-display text-xl font-bold tracking-tight text-white sm:text-[1.35rem]">
             Next
             <span className="text-brand-primary-light">Wave</span>
           </span>
-          <span className="mt-1.5 block font-sans text-[9px] font-semibold uppercase tracking-[0.32em] text-white/75 sm:text-[10px] sm:tracking-[0.36em]">
+          <span className="mt-1.5 block max-w-[11rem] font-sans text-[8px] font-semibold uppercase tracking-[0.24em] text-white/75 sm:max-w-none sm:text-[10px] sm:tracking-[0.36em]">
             {headerBrandContent.subtitle}
           </span>
         </Link>
@@ -127,7 +143,7 @@ export function SiteHeader() {
           aria-label="Main"
           className="hidden flex-1 justify-center md:flex"
         >
-          <ul className="flex items-center gap-5 lg:gap-7 xl:gap-8">
+          <ul className="flex items-center gap-4 md:gap-5 lg:gap-7 xl:gap-8">
             {mainLinks.map((link) => (
               <li key={link.href}>
                 <NavLinkItem
@@ -149,6 +165,7 @@ export function SiteHeader() {
 
         <div className="flex shrink-0 items-center md:hidden">
           <button
+            ref={menuToggleRef}
             type="button"
             aria-expanded={menuOpen}
             aria-controls={mobileNavId}
@@ -183,7 +200,7 @@ export function SiteHeader() {
       {menuOpen ? (
         <div
           id={mobileNavId}
-          className="border-t border-white/10 bg-brand-navy/98 backdrop-blur-md md:hidden"
+          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-t border-white/10 bg-brand-navy/98 backdrop-blur-md md:hidden"
         >
           <nav aria-label="Mobile" className="mx-auto max-w-7xl px-5 py-4 sm:px-8">
             <ul className="divide-y divide-white/10 border-y border-white/10">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type ChangeEvent, type FormEvent } from "react";
+import { useId, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import {
   applyFormContent,
   emptyApplicationValues,
@@ -65,6 +65,7 @@ export function CreatorApplicationForm() {
   const formId = useId();
   const noticeId = `${formId}-backend-notice`;
   const feedbackId = `${formId}-feedback`;
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const [values, setValues] = useState<ApplicationFormValues>(
     emptyApplicationValues,
@@ -73,14 +74,18 @@ export function CreatorApplicationForm() {
     Partial<Record<keyof ApplicationFormValues, string>>
   >({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedSuccessfully, setSubmittedSuccessfully] = useState(false);
   const [feedback, setFeedback] = useState<{
-    type: "error" | "info";
+    type: "error" | "success";
     message: string;
+    secondaryMessage?: string;
   } | null>(null);
 
   const {
     submissionNotice,
-    deliveryNotConnectedMessage,
+    successMessage,
+    successSecondaryMessage,
+    submitErrorMessage,
     privacyNote,
     submitLabel,
     sections,
@@ -113,6 +118,8 @@ export function CreatorApplicationForm() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isSubmitting || submittedSuccessfully) return;
+
     setFeedback(null);
 
     const nextErrors = validate(values);
@@ -125,21 +132,73 @@ export function CreatorApplicationForm() {
 
     setIsSubmitting(true);
 
-    // TODO: POST to server action / API when backend is connected.
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    try {
+      const response = await fetch("/api/applications", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: values.fullName,
+          email: values.email,
+          country: values.country,
+          tiktokUsername: values.tiktokUsername,
+          tiktokProfileUrl: values.tiktokProfileUrl,
+          followerRange: values.followerRange,
+          liveStatus: values.liveStatus,
+          liveFrequency: values.liveFrequency,
+          developmentGoal: values.developmentGoal,
+          whyNextwave: values.whyNextwave,
+          additionalInfo: values.additionalInfo,
+          website: (
+            event.currentTarget.elements.namedItem("website") as
+              | HTMLInputElement
+              | null
+          )?.value,
+        }),
+      });
 
-    setIsSubmitting(false);
-    setFeedback({
-      type: "info",
-      message: deliveryNotConnectedMessage,
-    });
+      const payload = (await response.json()) as {
+        message?: string;
+        error?: string;
+      };
+
+      if (!response.ok) {
+        setFeedback({
+          type: "error",
+          message: payload.error ?? submitErrorMessage,
+        });
+        return;
+      }
+
+      setValues(emptyApplicationValues);
+      setErrors({});
+      setSubmittedSuccessfully(true);
+      setFeedback({
+        type: "success",
+        message: payload.message ?? successMessage,
+        secondaryMessage: successSecondaryMessage,
+      });
+    } catch {
+      setFeedback({ type: "error", message: submitErrorMessage });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const resetForAnotherSubmission = () => {
+    setSubmittedSuccessfully(false);
+    setFeedback(null);
+    setValues(emptyApplicationValues);
+    setErrors({});
+    if (honeypotRef.current) {
+      honeypotRef.current.value = "";
+    }
   };
 
   const fieldBorder = (hasError: boolean) =>
     hasError ? fieldErrorClassName : "";
 
   return (
-    <div className="rounded-xl border border-white/10 bg-brand-navy-deep/60 p-6 sm:p-8">
+    <div className="min-w-0 rounded-xl border border-white/10 bg-brand-navy-deep/60 p-6 sm:p-8">
       <p id={noticeId} className="font-sans text-sm leading-relaxed text-text-muted">
         {submissionNotice}
       </p>
@@ -150,13 +209,29 @@ export function CreatorApplicationForm() {
         className="mt-6 space-y-12"
         aria-describedby={`${noticeId}${feedback ? ` ${feedbackId}` : ""}`}
       >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-[-9999px] h-px w-px overflow-hidden"
+        >
+          <label htmlFor={`${formId}-website`}>Website</label>
+          <input
+            ref={honeypotRef}
+            id={`${formId}-website`}
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            defaultValue=""
+          />
+        </div>
+
         <fieldset className="space-y-5">
           <legend className={`${sectionHeadingClassName} mb-1`}>
             {sections.aboutYou}
           </legend>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
+          <div className="grid min-w-0 gap-5 sm:grid-cols-2">
+            <div className="min-w-0">
               <label htmlFor={`${formId}-fullName`} className={labelClassName}>
                 {fields.fullName.label}{" "}
                 <span className="text-brand-primary-light">*</span>
@@ -186,7 +261,7 @@ export function CreatorApplicationForm() {
               ) : null}
             </div>
 
-            <div>
+            <div className="min-w-0">
               <label htmlFor={`${formId}-email`} className={labelClassName}>
                 {fields.email.label}{" "}
                 <span className="text-brand-primary-light">*</span>
@@ -264,8 +339,8 @@ export function CreatorApplicationForm() {
             {sections.creatorProfile}
           </legend>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
+          <div className="grid min-w-0 gap-5 sm:grid-cols-2">
+            <div className="min-w-0">
               <label
                 htmlFor={`${formId}-tiktokUsername`}
                 className={labelClassName}
@@ -301,7 +376,7 @@ export function CreatorApplicationForm() {
               ) : null}
             </div>
 
-            <div>
+            <div className="min-w-0">
               <label
                 htmlFor={`${formId}-followerRange`}
                 className={labelClassName}
@@ -522,7 +597,7 @@ export function CreatorApplicationForm() {
         {feedback ? (
           <div
             id={feedbackId}
-            role="alert"
+            role={feedback.type === "success" ? "status" : "alert"}
             aria-live="polite"
             className={`rounded-lg border px-4 py-3 font-sans text-sm leading-relaxed ${
               feedback.type === "error"
@@ -530,20 +605,41 @@ export function CreatorApplicationForm() {
                 : "border-brand-primary/30 bg-brand-primary/5 text-text-muted"
             }`}
           >
-            {feedback.message}
+            <p>{feedback.message}</p>
+            {feedback.secondaryMessage ? (
+              <p className="mt-2 text-text-muted/90">{feedback.secondaryMessage}</p>
+            ) : null}
           </div>
         ) : null}
 
         <div className="border-t border-white/10 pt-8">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            aria-busy={isSubmitting}
-            className="inline-flex min-h-[48px] w-full items-center justify-center gap-1.5 rounded-lg bg-brand-primary px-7 py-3 font-sans text-sm font-semibold text-brand-navy transition-colors hover:bg-brand-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary disabled:cursor-wait disabled:opacity-70 sm:w-auto"
-          >
-            {isSubmitting ? "Submitting…" : submitLabel}
-            {!isSubmitting ? <span aria-hidden="true">→</span> : null}
-          </button>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <button
+              type="submit"
+              disabled={isSubmitting || submittedSuccessfully}
+              aria-busy={isSubmitting}
+              aria-disabled={submittedSuccessfully || undefined}
+              className="inline-flex min-h-[48px] w-full items-center justify-center gap-1.5 rounded-lg bg-brand-primary px-7 py-3 font-sans text-sm font-semibold text-brand-navy transition-colors hover:bg-brand-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+            >
+              {isSubmitting
+                ? "Submitting…"
+                : submittedSuccessfully
+                  ? "Application Submitted"
+                  : submitLabel}
+              {!isSubmitting && !submittedSuccessfully ? (
+                <span aria-hidden="true">→</span>
+              ) : null}
+            </button>
+            {submittedSuccessfully ? (
+              <button
+                type="button"
+                onClick={resetForAnotherSubmission}
+                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg border border-white/25 bg-transparent px-7 py-3 font-sans text-sm font-semibold text-white/90 transition-colors hover:border-white/40 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary sm:w-auto"
+              >
+                Submit Another Application
+              </button>
+            ) : null}
+          </div>
           <p className="mt-4 font-sans text-sm leading-relaxed text-text-muted/80">
             {privacyNote}
           </p>

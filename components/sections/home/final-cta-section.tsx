@@ -34,7 +34,7 @@ export function FinalCtaSection() {
           </p>
           <h2
             id="final-cta-heading"
-            className="font-display mt-4 text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-white sm:mt-5 sm:text-[2.5rem] lg:text-[3rem] xl:text-[3.75rem]"
+            className="font-display mt-4 text-balance text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-white sm:mt-5 sm:text-[2.5rem] lg:text-[3rem] xl:text-[3.75rem]"
           >
             {heading}
           </h2>

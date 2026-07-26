@@ -15,7 +15,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/10 bg-brand-navy-deep text-white">
+    <footer className="relative overflow-x-clip border-t border-white/10 bg-brand-navy-deep text-white">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-brand-primary/45 to-transparent"

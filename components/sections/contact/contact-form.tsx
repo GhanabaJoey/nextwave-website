@@ -1,7 +1,11 @@
 "use client";
 
-import { useId, useState, type FormEvent } from "react";
-import { contactFormContent } from "@/content/contact";
+import { useId, useRef, useState, type ChangeEvent, type FormEvent } from "react";
+import {
+  contactFormContent,
+  emptyContactValues,
+  type ContactFormValues,
+} from "@/content/contact";
 
 const fieldClassName =
   "mt-2 w-full rounded-lg border border-white/12 bg-brand-navy/70 px-4 py-3 text-base text-white placeholder:text-text-muted/60 transition-[border-color,box-shadow] outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20";
@@ -12,30 +16,24 @@ const fieldErrorClassName =
 const labelClassName =
   "font-sans text-[13px] font-semibold uppercase tracking-[0.06em] text-white";
 
-type FormErrors = {
-  name?: string;
-  email?: string;
-  enquiryType?: string;
-  message?: string;
-};
+type FormErrors = Partial<Record<keyof ContactFormValues, string>>;
 
-function validateForm(formData: FormData): FormErrors {
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+}
+
+function validate(values: ContactFormValues): FormErrors {
   const errors: FormErrors = {};
   const { validation } = contactFormContent;
 
-  const name = (formData.get("name") as string)?.trim();
-  const email = (formData.get("email") as string)?.trim();
-  const enquiryType = formData.get("enquiryType") as string;
-  const message = (formData.get("message") as string)?.trim();
-
-  if (!name) errors.name = validation.nameRequired;
-  if (!email) {
+  if (!values.name.trim()) errors.name = validation.nameRequired;
+  if (!values.email.trim()) {
     errors.email = validation.emailRequired;
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  } else if (!isValidEmail(values.email)) {
     errors.email = validation.emailInvalid;
   }
-  if (!enquiryType) errors.enquiryType = validation.enquiryTypeRequired;
-  if (!message) errors.message = validation.messageRequired;
+  if (!values.enquiryType) errors.enquiryType = validation.enquiryTypeRequired;
+  if (!values.message.trim()) errors.message = validation.messageRequired;
 
   return errors;
 }
@@ -44,47 +42,124 @@ export function ContactForm() {
   const formId = useId();
   const noticeId = `${formId}-submission-notice`;
   const feedbackId = `${formId}-feedback`;
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
+  const [values, setValues] = useState<ContactFormValues>(emptyContactValues);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedSuccessfully, setSubmittedSuccessfully] = useState(false);
   const [feedback, setFeedback] = useState<{
-    type: "info" | "error";
+    type: "error" | "success";
     message: string;
+    secondaryMessage?: string;
   } | null>(null);
+
+  const {
+    fields,
+    enquiryTypes,
+    submitLabel,
+    privacyNote,
+    submissionNotice,
+    successMessage,
+    successSecondaryMessage,
+    submitErrorMessage,
+    validation,
+  } = contactFormContent;
+
+  const update =
+    (field: keyof ContactFormValues) =>
+    (
+      event: ChangeEvent<
+        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+      >,
+    ) => {
+      const next = event.target.value;
+      setValues((prev) => ({ ...prev, [field]: next }));
+      setErrors((prev) => {
+        if (!prev[field]) return prev;
+        const nextErrors = { ...prev };
+        delete nextErrors[field];
+        return nextErrors;
+      });
+      setFeedback(null);
+    };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isSubmitting || submittedSuccessfully) return;
+
     setFeedback(null);
 
-    const formData = new FormData(event.currentTarget);
-    const validationErrors = validateForm(formData);
+    const validationErrors = validate(values);
+    setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      setFeedback({
-        type: "error",
-        message: "Please complete all required fields before sending.",
-      });
+      setFeedback({ type: "error", message: validation.formSummary });
       return;
     }
 
-    setErrors({});
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 400));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          enquiryType: values.enquiryType,
+          message: values.message,
+          website: (
+            event.currentTarget.elements.namedItem("website") as
+              | HTMLInputElement
+              | null
+          )?.value,
+        }),
+      });
 
-    setIsSubmitting(false);
-    setFeedback({
-      type: "info",
-      message: contactFormContent.deliveryNotConnectedMessage,
-    });
+      const payload = (await response.json()) as {
+        message?: string;
+        error?: string;
+      };
+
+      if (!response.ok) {
+        setFeedback({
+          type: "error",
+          message: payload.error ?? submitErrorMessage,
+        });
+        return;
+      }
+
+      setValues(emptyContactValues);
+      setErrors({});
+      setSubmittedSuccessfully(true);
+      setFeedback({
+        type: "success",
+        message: payload.message ?? successMessage,
+        secondaryMessage: successSecondaryMessage,
+      });
+    } catch {
+      setFeedback({ type: "error", message: submitErrorMessage });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const { fields, enquiryTypes, submitLabel, privacyNote, submissionNotice } =
-    contactFormContent;
+  const resetForAnotherMessage = () => {
+    setSubmittedSuccessfully(false);
+    setFeedback(null);
+    setValues(emptyContactValues);
+    setErrors({});
+    if (honeypotRef.current) {
+      honeypotRef.current.value = "";
+    }
+  };
+
+  const fieldBorder = (hasError: boolean) =>
+    hasError ? fieldErrorClassName : "";
 
   return (
-    <div className="rounded-xl border border-white/10 bg-brand-navy-deep/60 p-6 sm:p-8">
+    <div className="min-w-0 rounded-xl border border-white/10 bg-brand-navy-deep/60 p-6 sm:p-8">
       <p
         id={noticeId}
         className="font-sans text-sm leading-relaxed text-text-muted"
@@ -99,6 +174,22 @@ export function ContactForm() {
         className="mt-6 space-y-5"
         aria-describedby={`${noticeId}${feedback ? ` ${feedbackId}` : ""}`}
       >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-[-9999px] h-px w-px overflow-hidden"
+        >
+          <label htmlFor={`${formId}-website`}>Website</label>
+          <input
+            ref={honeypotRef}
+            id={`${formId}-website`}
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            defaultValue=""
+          />
+        </div>
+
         <div>
           <label htmlFor={`${formId}-name`} className={labelClassName}>
             {fields.name.label}{" "}
@@ -111,9 +202,11 @@ export function ContactForm() {
             required
             autoComplete="name"
             placeholder={fields.name.placeholder}
-            aria-invalid={errors.name ? true : undefined}
+            value={values.name}
+            onChange={update("name")}
+            aria-invalid={Boolean(errors.name)}
             aria-describedby={errors.name ? `${formId}-name-error` : undefined}
-            className={`${fieldClassName} min-h-[48px] ${errors.name ? fieldErrorClassName : ""}`}
+            className={`${fieldClassName} min-h-[48px] ${fieldBorder(Boolean(errors.name))}`}
           />
           {errors.name ? (
             <p
@@ -138,9 +231,11 @@ export function ContactForm() {
             required
             autoComplete="email"
             placeholder={fields.email.placeholder}
-            aria-invalid={errors.email ? true : undefined}
+            value={values.email}
+            onChange={update("email")}
+            aria-invalid={Boolean(errors.email)}
             aria-describedby={errors.email ? `${formId}-email-error` : undefined}
-            className={`${fieldClassName} min-h-[48px] ${errors.email ? fieldErrorClassName : ""}`}
+            className={`${fieldClassName} min-h-[48px] ${fieldBorder(Boolean(errors.email))}`}
           />
           {errors.email ? (
             <p
@@ -162,12 +257,13 @@ export function ContactForm() {
             id={`${formId}-type`}
             name="enquiryType"
             required
-            defaultValue=""
-            aria-invalid={errors.enquiryType ? true : undefined}
+            value={values.enquiryType}
+            onChange={update("enquiryType")}
+            aria-invalid={Boolean(errors.enquiryType)}
             aria-describedby={
               errors.enquiryType ? `${formId}-type-error` : undefined
             }
-            className={`${fieldClassName} min-h-[48px] cursor-pointer ${errors.enquiryType ? fieldErrorClassName : ""}`}
+            className={`${fieldClassName} min-h-[48px] cursor-pointer ${fieldBorder(Boolean(errors.enquiryType))}`}
           >
             <option value="" disabled>
               {fields.enquiryType.placeholder}
@@ -204,11 +300,13 @@ export function ContactForm() {
             required
             rows={5}
             placeholder={fields.message.placeholder}
-            aria-invalid={errors.message ? true : undefined}
+            value={values.message}
+            onChange={update("message")}
+            aria-invalid={Boolean(errors.message)}
             aria-describedby={
               errors.message ? `${formId}-message-error` : undefined
             }
-            className={`${fieldClassName} min-h-[140px] max-h-[180px] resize-y ${errors.message ? fieldErrorClassName : ""}`}
+            className={`${fieldClassName} min-h-[140px] max-h-[180px] resize-y ${fieldBorder(Boolean(errors.message))}`}
           />
           {errors.message ? (
             <p
@@ -224,7 +322,7 @@ export function ContactForm() {
         {feedback ? (
           <div
             id={feedbackId}
-            role="alert"
+            role={feedback.type === "success" ? "status" : "alert"}
             aria-live="polite"
             className={`rounded-lg border px-4 py-3 font-sans text-sm leading-relaxed ${
               feedback.type === "error"
@@ -232,22 +330,41 @@ export function ContactForm() {
                 : "border-brand-primary/30 bg-brand-primary/5 text-text-muted"
             }`}
           >
-            {feedback.message}
+            <p>{feedback.message}</p>
+            {feedback.secondaryMessage ? (
+              <p className="mt-2 text-text-muted/90">{feedback.secondaryMessage}</p>
+            ) : null}
           </div>
         ) : null}
 
         <div className="pt-1">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            aria-busy={isSubmitting}
-            className="inline-flex min-h-[48px] w-full items-center justify-center gap-1.5 rounded-lg bg-brand-primary px-7 py-3 font-sans text-sm font-semibold text-brand-navy transition-colors hover:bg-brand-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary disabled:cursor-wait disabled:opacity-70 sm:w-auto"
-          >
-            {isSubmitting ? "Sending…" : submitLabel}
-            {!isSubmitting ? (
-              <span aria-hidden="true">→</span>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <button
+              type="submit"
+              disabled={isSubmitting || submittedSuccessfully}
+              aria-busy={isSubmitting}
+              aria-disabled={submittedSuccessfully || undefined}
+              className="inline-flex min-h-[48px] w-full items-center justify-center gap-1.5 rounded-lg bg-brand-primary px-7 py-3 font-sans text-sm font-semibold text-brand-navy transition-colors hover:bg-brand-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+            >
+              {isSubmitting
+                ? "Sending…"
+                : submittedSuccessfully
+                  ? "Message Sent"
+                  : submitLabel}
+              {!isSubmitting && !submittedSuccessfully ? (
+                <span aria-hidden="true">→</span>
+              ) : null}
+            </button>
+            {submittedSuccessfully ? (
+              <button
+                type="button"
+                onClick={resetForAnotherMessage}
+                className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg border border-white/25 bg-transparent px-7 py-3 font-sans text-sm font-semibold text-white/90 transition-colors hover:border-white/40 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary sm:w-auto"
+              >
+                Send Another Message
+              </button>
             ) : null}
-          </button>
+          </div>
           <p className="mt-4 font-sans text-sm leading-relaxed text-text-muted/80">
             {privacyNote}
           </p>

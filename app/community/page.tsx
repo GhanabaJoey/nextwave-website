@@ -7,12 +7,13 @@ import { CommunityLiveWarsSection } from "@/components/sections/community/commun
 import { CommunityMomentsSection } from "@/components/sections/community/community-moments-section";
 import { CommunityNetworkSection } from "@/components/sections/community/community-network-section";
 import { CommunityStatementSection } from "@/components/sections/community/community-statement-section";
-import { siteConfig } from "@/content/site";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Community & Events",
-  description: `Discover the ${siteConfig.shortName} community — LIVE Wars, training, creator connection and recognition across the UK and Australia.`,
-};
+  description:
+    "Discover the NextWave community — LIVE Wars, creator training, connection and recognition across the United Kingdom and Australia.",
+});
 
 export default function CommunityPage() {
   return (

@@ -29,9 +29,9 @@ export function AboutMarketsSection() {
 
           <div className="mt-12 lg:col-span-7 lg:mt-0">
             <div className="relative border-t border-white/10 pt-10 lg:pt-0 lg:border-t-0 lg:border-l lg:border-white/10 lg:pl-12 xl:pl-16">
-              <div className="flex flex-col gap-10 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
-                <div>
-                  <p className="font-display text-6xl font-extrabold leading-none tracking-tight text-brand-primary-light sm:text-7xl lg:text-[5.5rem]">
+              <div className="flex flex-col gap-10 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-8">
+                <div className="min-w-0">
+                  <p className="font-display text-5xl font-extrabold leading-none tracking-tight text-brand-primary-light sm:text-6xl lg:text-[5.5rem]">
                     {stats[0]?.value}
                   </p>
                   <p className="mt-2 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white">
@@ -39,7 +39,7 @@ export function AboutMarketsSection() {
                   </p>
                 </div>
 
-                <div className="hidden sm:block" aria-hidden="true">
+                <div className="hidden md:block" aria-hidden="true">
                   <svg
                     className="h-16 w-32 text-brand-primary/25 lg:h-20 lg:w-40"
                     viewBox="0 0 160 80"
@@ -56,8 +56,8 @@ export function AboutMarketsSection() {
                   </svg>
                 </div>
 
-                <div className="text-left sm:text-right">
-                  <p className="font-display text-5xl font-extrabold leading-none tracking-tight text-brand-primary-light sm:text-6xl">
+                <div className="min-w-0 text-left md:text-right">
+                  <p className="font-display text-4xl font-extrabold leading-none tracking-tight text-brand-primary-light sm:text-5xl md:text-6xl">
                     {stats[1]?.value}
                   </p>
                   <p className="mt-2 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white">

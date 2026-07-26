@@ -49,7 +49,7 @@ export function SectionIntro({
       </p>
       <h2
         id={headingId}
-        className={`font-display mt-3 text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.02em] sm:mt-4 sm:text-[2.5rem] lg:text-[3rem] lg:leading-[1.06] xl:text-[3.75rem] ${styles.heading}`}
+        className={`font-display mt-3 text-balance text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.02em] sm:mt-4 sm:text-[2.5rem] lg:text-[3rem] lg:leading-[1.06] xl:text-[3.75rem] ${styles.heading}`}
       >
         {heading}
       </h2>

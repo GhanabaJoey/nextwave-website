@@ -8,12 +8,13 @@ import { ResourcesNextwaveLearningSection } from "@/components/sections/resource
 import { ResourcesResponsibleGuidanceSection } from "@/components/sections/resources/resources-responsible-guidance-section";
 import { ResourcesStartHereSection } from "@/components/sections/resources/resources-start-here-section";
 import { ResourcesStreamQualitySection } from "@/components/sections/resources/resources-stream-quality-section";
-import { siteConfig } from "@/content/site";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Creator Resources",
-  description: `Practical LIVE creator guidance from ${siteConfig.shortName} — foundations, stream quality, growth tips and learning with the community.`,
-};
+  description:
+    "Practical LIVE creator guidance from NextWave — foundations, stream quality, growth habits and learning with the community.",
+});
 
 export default function ResourcesPage() {
   return (

@@ -6,6 +6,11 @@ import { CommunityPreviewSection } from "@/components/sections/home/community-pr
 import { TestimonialsSection } from "@/components/sections/home/testimonials-section";
 import { FaqSection } from "@/components/sections/home/faq-section";
 import { FinalCtaSection } from "@/components/sections/home/final-cta-section";
+import { createHomeMetadata } from "@/lib/metadata";
+
+export const metadata = createHomeMetadata(
+  "A creator community helping LIVE creators develop their skills, connect with others and unlock more opportunities across the United Kingdom and Australia.",
+);
 
 export default function Home() {
   return (

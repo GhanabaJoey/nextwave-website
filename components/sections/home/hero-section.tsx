@@ -39,8 +39,8 @@ export function HeroSection() {
       />
 
       <div className="relative z-10 mx-auto flex min-h-[inherit] max-w-7xl flex-col justify-end px-5 pt-28 pb-14 sm:justify-center sm:px-8 sm:pt-32 sm:pb-16 lg:px-10 lg:pt-36">
-        <div className="max-w-xl lg:max-w-2xl">
-          <p className="flex items-center gap-3 font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-brand-primary sm:text-xs">
+        <div className="min-w-0 max-w-xl lg:max-w-2xl">
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-primary sm:text-[11px] sm:tracking-[0.3em] sm:text-xs">
             <span
               aria-hidden="true"
               className="h-px w-5 shrink-0 bg-brand-primary/70 sm:w-6"
@@ -50,7 +50,7 @@ export function HeroSection() {
 
           <h1
             id="hero-heading"
-            className="font-display mt-4 text-[3rem] font-extrabold leading-[0.95] tracking-[-0.025em] text-white sm:mt-5 sm:text-[4rem] sm:leading-[0.94] md:text-[4.5rem] lg:text-[5.25rem] lg:leading-[0.92] xl:text-[6rem] 2xl:text-[6.5rem]"
+            className="font-display mt-4 text-[2.65rem] font-extrabold leading-[0.95] tracking-[-0.025em] text-white sm:mt-5 sm:text-[4rem] sm:leading-[0.94] md:text-[4.5rem] lg:text-[5.25rem] lg:leading-[0.92] xl:text-[6rem] 2xl:text-[6.5rem]"
           >
             {headlineLines.map((line, index) => (
               <span key={line} className="block">
