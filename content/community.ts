@@ -6,6 +6,9 @@ export type CommunityImage = {
   photoPageUrl: string;
   photographer: string;
   photographerUrl: string;
+  platform?: "Pexels";
+  platformUrl?: string;
+  objectPosition?: string;
 };
 
 export const communityHeroContent = {
@@ -50,12 +53,12 @@ export const communityExperiencesContent = {
         "Competitive LIVE experiences built around entertainment and community.",
       accent: "primary" as const,
       image: {
-        src: "https://images.unsplash.com/photo-1764162051353-0d3aef372c56",
-        alt: "A smartphone recording a creator during a live stream with studio lighting visible.",
-        photoPageUrl:
-          "https://unsplash.com/photos/smartphone-recording-a-man-speaking-on-live-stream-eLcArm7e7G8",
-        photographer: "Detail .co",
-        photographerUrl: "https://unsplash.com/@detailvideo",
+        src: "/images/nextwave-live-wars.jpg",
+        alt: "Two creators facing off in a split-screen LIVE Wars PK battle with microphones, scoreboards and a central VS graphic.",
+        photoPageUrl: "/community#experiences",
+        photographer: "NextWave Creator Network",
+        photographerUrl: "/",
+        objectPosition: "object-[50%_42%] sm:object-[50%_40%]",
       } satisfies CommunityImage,
     },
     {
@@ -66,12 +69,14 @@ export const communityExperiencesContent = {
         "Development opportunities focused on LIVE skills, strategy and creator confidence.",
       accent: "primary" as const,
       image: {
-        src: "https://images.unsplash.com/photo-1745848413060-0827ec268cda",
-        alt: "A creator filming with a camera and monitor in a modern content production setup.",
-        photoPageUrl:
-          "https://unsplash.com/photos/filming-a-video-with-the-camera-in-focus-Gz4AEq4QN5g",
-        photographer: "dlxmedia.hu",
-        photographerUrl: "https://unsplash.com/@dlxmedia",
+        src: "/images/creator-training-vlogging.jpg",
+        alt: "Creator vlogging indoors with a smartphone on a tripod, ring light and laptop in a home studio setup.",
+        photoPageUrl: "https://www.pexels.com/photo/a-woman-vlogging-7514830/",
+        photographer: "Kampus Production",
+        photographerUrl: "https://www.pexels.com/@kampus/",
+        platform: "Pexels",
+        platformUrl: "https://www.pexels.com",
+        objectPosition: "object-[52%_38%] sm:object-[50%_36%]",
       } satisfies CommunityImage,
     },
     {
@@ -82,12 +87,15 @@ export const communityExperiencesContent = {
         "Recognising creator progress, participation and memorable community moments.",
       accent: "gold" as const,
       image: {
-        src: "https://images.unsplash.com/photo-1527269534026-c86f4009eace",
-        alt: "People celebrating together with confetti at an energetic community event.",
+        src: "/images/awards-podium-123.jpg",
+        alt: "First, second and third place podium blocks with numbered medals representing ranked achievement and recognition.",
         photoPageUrl:
-          "https://unsplash.com/photos/people-covered-by-confetti-GUAcpXPyFRc",
-        photographer: "Keith Luke",
-        photographerUrl: "https://unsplash.com/@lukephotography",
+          "https://www.pexels.com/photo/medals-on-pedestal-on-pink-studio-background-7267573/",
+        photographer: "DS stories",
+        photographerUrl: "https://www.pexels.com/@ds-stories/",
+        platform: "Pexels",
+        platformUrl: "https://www.pexels.com",
+        objectPosition: "object-[50%_44%] sm:object-[50%_42%]",
       } satisfies CommunityImage,
     },
     {
@@ -98,12 +106,12 @@ export const communityExperiencesContent = {
         "Build relationships, exchange experiences and meet creators across the network.",
       accent: "primary" as const,
       image: {
-        src: "https://images.unsplash.com/photo-1759393851741-674ee71fb498",
-        alt: "A creator recording content on a smartphone in a relaxed modern environment.",
+        src: "https://images.unsplash.com/photo-1695014192203-291edf9e4842",
+        alt: "A group of creators collaborating around a camera on a film-style content shoot.",
         photoPageUrl:
-          "https://unsplash.com/photos/smartphone-recording-a-woman-on-a-couch-GGXaT08IAYE",
-        photographer: "Afffect",
-        photographerUrl: "https://unsplash.com/@afffect",
+          "https://unsplash.com/photos/a-group-of-people-standing-around-a-camera-Ony-jQSBvNY",
+        photographer: "Daniel",
+        photographerUrl: "https://unsplash.com/@unsplashbydan",
       } satisfies CommunityImage,
     },
   ],
@@ -137,12 +145,12 @@ export const communityLiveWarsContent = {
     },
   ],
   image: {
-    src: "https://images.unsplash.com/photo-1684224389895-ca9862cd625b",
-    alt: "A creator at a streaming desk with colourful purple and blue lighting and multiple monitors during a LIVE session.",
-    photoPageUrl:
-      "https://unsplash.com/photos/a-man-sitting-in-front-of-a-computer-monitor-W5KtfcB7kw4",
-    photographer: "Amine mouzaoui",
-    photographerUrl: "https://unsplash.com/@hoovr01",
+    src: "/images/community-live-wars-battle.png",
+    alt: "Two creators competing in a split-screen NextWave LIVE Wars battle with scores, gift notifications, a countdown timer and Lion and TikTok Universe-style gifts.",
+    photoPageUrl: "/community#live-wars",
+    photographer: "NextWave Creator Network",
+    photographerUrl: "/",
+    objectPosition: "object-[50%_48%] lg:object-[50%_46%]",
   } satisfies CommunityImage,
 } as const;
 

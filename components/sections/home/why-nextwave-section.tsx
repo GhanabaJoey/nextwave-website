@@ -49,22 +49,20 @@ export function WhyNextwaveSection() {
           />
         </div>
 
-        <div className="mt-12 flex flex-col gap-12 lg:mt-16 lg:grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-start lg:gap-14 xl:gap-16">
-          <figure className="relative lg:sticky lg:top-28">
-            <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10">
-              <div className="relative aspect-4/3 min-h-[240px] sm:min-h-[300px] lg:aspect-[4/5] lg:min-h-[460px]">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                  className="object-cover object-center"
-                />
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-linear-to-t from-brand-navy/70 via-transparent to-transparent"
-                />
-              </div>
+        <div className="mt-12 flex flex-col gap-12 lg:mt-16 lg:grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-stretch lg:gap-14 xl:gap-16">
+          <figure className="relative flex min-h-0 flex-col lg:h-full">
+            <div className="relative aspect-4/3 min-h-[240px] overflow-hidden rounded-2xl ring-1 ring-white/10 sm:min-h-[300px] lg:aspect-auto lg:h-full lg:min-h-0">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                className="object-cover object-[68%_42%] sm:object-[70%_40%] lg:object-[72%_32%]"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-linear-to-t from-brand-navy/70 via-transparent to-transparent"
+              />
             </div>
             <figcaption className="sr-only">
               Photo by{" "}

@@ -26,7 +26,7 @@ export function AboutHeroSection() {
         priority
         quality={85}
         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1400px"
-        className="object-cover object-[68%_center] sm:object-[62%_center] lg:object-[58%_center]"
+        className="object-cover object-[50%_40%] sm:object-[54%_38%] lg:object-[56%_36%]"
       />
 
       <div

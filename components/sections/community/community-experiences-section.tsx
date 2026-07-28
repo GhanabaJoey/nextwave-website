@@ -29,7 +29,11 @@ function ExperienceTile({
           alt={experience.image.alt}
           fill
           sizes={sizes}
-          className="object-cover"
+          className={`object-cover ${
+            "objectPosition" in experience.image
+              ? experience.image.objectPosition
+              : ""
+          }`}
         />
         <div
           aria-hidden="true"

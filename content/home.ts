@@ -74,12 +74,12 @@ export const whyNextwaveContent = {
   supportingCopy:
     "Going LIVE is easier with the right people, guidance and opportunities around you.",
   image: {
-    src: "https://images.unsplash.com/photo-1753162660995-52218587ce71",
-    alt: "Two young content creators filming together in a bright studio with a camera, sketches and production gear visible as they create social media content.",
+    src: "/images/samsung-memory-streamer-desk.jpg",
+    alt: "A content creator in a green shirt wearing headphones at a multi-monitor streaming desk with a professional broadcast microphone, studio speakers and editing screens.",
     photoPageUrl:
-      "https://unsplash.com/photos/two-women-are-filming-a-video-tvePcqY52-4",
-    photographer: "Vitaly Gariev",
-    photographerUrl: "https://unsplash.com/@silverkblack",
+      "https://unsplash.com/photos/a-man-wearing-headphones-and-sitting-at-a-desk-with-a-computer-QJjuS_DIpEY",
+    photographer: "Samsung Memory",
+    photographerUrl: "https://unsplash.com/@samsungmemory",
   },
   benefits: [
     {
@@ -187,12 +187,12 @@ export const communityPreviewContent = {
         "Creator competitions that bring energy, friendly rivalry and community engagement to TikTok LIVE.",
       accent: "primary",
       image: {
-        src: "https://images.unsplash.com/photo-1764162051353-0d3aef372c56",
-        alt: "A smartphone recording a creator speaking during a live stream, with studio lighting and production gear visible.",
-        photoPageUrl:
-          "https://unsplash.com/photos/smartphone-recording-a-man-speaking-on-live-stream-eLcArm7e7G8",
-        photographer: "Detail .co",
-        photographerUrl: "https://unsplash.com/@detailvideo",
+        src: "/images/nextwave-live-wars.jpg",
+        alt: "Two creators facing off in a split-screen LIVE Wars PK battle with microphones, scoreboards and a central VS graphic.",
+        photoPageUrl: "/community#experiences",
+        photographer: "NextWave Creator Network",
+        photographerUrl: "/",
+        objectPosition: "object-[50%_42%] sm:object-[50%_40%]",
       },
     },
     {
@@ -203,12 +203,14 @@ export const communityPreviewContent = {
         "Regular sessions focused on LIVE strategy, creator development and practical growth.",
       accent: "primary",
       image: {
-        src: "https://images.unsplash.com/photo-1745848413060-0827ec268cda",
-        alt: "A creator filming video content with a camera and monitor in a modern production setup focused on content creation.",
-        photoPageUrl:
-          "https://unsplash.com/photos/filming-a-video-with-the-camera-in-focus-Gz4AEq4QN5g",
-        photographer: "dlxmedia.hu",
-        photographerUrl: "https://unsplash.com/@dlxmedia",
+        src: "/images/creator-training-vlogging.jpg",
+        alt: "Creator vlogging indoors with a smartphone on a tripod, ring light and laptop in a home studio setup.",
+        photoPageUrl: "https://www.pexels.com/photo/a-woman-vlogging-7514830/",
+        photographer: "Kampus Production",
+        photographerUrl: "https://www.pexels.com/@kampus/",
+        platform: "Pexels",
+        platformUrl: "https://www.pexels.com",
+        objectPosition: "object-[52%_38%] sm:object-[50%_36%]",
       },
     },
     {
@@ -235,12 +237,15 @@ export const communityPreviewContent = {
         "Community moments that recognise creator progress, achievements and standout contributions.",
       accent: "gold",
       image: {
-        src: "https://images.unsplash.com/photo-1527269534026-c86f4009eace",
-        alt: "People celebrating together with confetti at a lively event, representing recognition and community achievement.",
+        src: "/images/awards-podium-123.jpg",
+        alt: "First, second and third place podium blocks with numbered medals representing ranked achievement and recognition.",
         photoPageUrl:
-          "https://unsplash.com/photos/people-covered-by-confetti-GUAcpXPyFRc",
-        photographer: "Keith Luke",
-        photographerUrl: "https://unsplash.com/@lukephotography",
+          "https://www.pexels.com/photo/medals-on-pedestal-on-pink-studio-background-7267573/",
+        photographer: "DS stories",
+        photographerUrl: "https://www.pexels.com/@ds-stories/",
+        platform: "Pexels",
+        platformUrl: "https://www.pexels.com",
+        objectPosition: "object-[50%_44%] sm:object-[50%_42%]",
       },
     },
   ],

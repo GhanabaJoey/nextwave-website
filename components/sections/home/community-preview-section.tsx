@@ -30,7 +30,11 @@ function ExperienceTile({
           alt={experience.image.alt}
           fill
           sizes={sizes}
-          className="object-cover"
+          className={`object-cover ${
+            "objectPosition" in experience.image
+              ? experience.image.objectPosition
+              : ""
+          }`}
         />
         <div
           aria-hidden="true"
@@ -59,7 +63,18 @@ function ExperienceTile({
         <a href={experience.image.photographerUrl}>
           {experience.image.photographer}
         </a>{" "}
-        on <a href={experience.image.photoPageUrl}>Unsplash</a>
+        on{" "}
+        <a
+          href={
+            "platformUrl" in experience.image
+              ? experience.image.platformUrl
+              : "https://unsplash.com"
+          }
+        >
+          {"platform" in experience.image
+            ? experience.image.platform
+            : "Unsplash"}
+        </a>
       </p>
     </article>
   );

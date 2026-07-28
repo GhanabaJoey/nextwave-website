@@ -6,6 +6,8 @@ export type AboutImage = {
   photoPageUrl: string;
   photographer: string;
   photographerUrl: string;
+  platform?: "Pexels";
+  platformUrl?: string;
 };
 
 export const aboutHeroContent = {
@@ -16,12 +18,14 @@ export const aboutHeroContent = {
   primaryCta: { label: "Apply to Join", href: "/apply" },
   secondaryCta: { label: "Explore the Community", href: "/community" },
   image: {
-    src: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d",
-    alt: "Two creators recording content together in a studio with microphones and headphones, representing collaborative creator community.",
+    src: "/images/about-creators-recording.jpg",
+    alt: "Two creators recording together with microphones, a laptop and a smartphone on a ring-light stand in a bright modern studio.",
     photoPageUrl:
-      "https://unsplash.com/photos/man-and-woman-sitting-in-front-of-microphone-during-podcast-recording-61fd2cf4d44d",
-    photographer: "CoWomen",
-    photographerUrl: "https://unsplash.com/@cowomen",
+      "https://www.pexels.com/photo/women-sitting-on-round-chair-while-looking-at-each-other-6953810/",
+    photographer: "George Milton",
+    photographerUrl: "https://www.pexels.com/@george-milton/",
+    platform: "Pexels",
+    platformUrl: "https://www.pexels.com",
   } satisfies AboutImage,
 } as const;
 
@@ -34,12 +38,12 @@ export const aboutStoryContent = {
     "NextWave was built around the idea that creators should have access to practical development, shared experiences and a community of people who understand the journey.",
   ],
   image: {
-    src: "https://images.unsplash.com/photo-1753162660995-52218587ce71",
-    alt: "Two content creators filming a video together in a creative studio with sketches and production equipment visible.",
+    src: "/images/our-story-creators-recording.jpg",
+    alt: "Two content creators recording together with professional microphones and headphones.",
     photoPageUrl:
-      "https://unsplash.com/photos/two-women-are-filming-a-video-tvePcqY52-4",
-    photographer: "Vitaly Gariev",
-    photographerUrl: "https://unsplash.com/@silverkblack",
+      "https://unsplash.com/photos/two-men-sitting-by-the-table-using-microphone-and-headphones-inside-studio-during-daytime-PdKvBaN44UM",
+    photographer: "Cody Board",
+    photographerUrl: "https://unsplash.com/@codypboard",
   } satisfies AboutImage,
 } as const;
 
@@ -97,12 +101,12 @@ export const aboutSupportContent = {
   eyebrow: "Creator Support",
   heading: "Support beyond the LIVE button.",
   lifestyleImage: {
-    src: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04",
-    alt: "A creator working in a professional recording studio with warm lighting, microphones and production equipment.",
+    src: "/images/creator-support-coaching.jpg",
+    alt: "A creator coach and trainee reviewing content together on a laptop and smartphone in a professional studio with a broadcast microphone.",
     photoPageUrl:
-      "https://images.unsplash.com/photos/man-in-black-shirt-sitting-on-chair-in-front-of-computer-set-IMUwe-p1yqs",
-    photographer: "Antenna",
-    photographerUrl: "https://unsplash.com/@thisisantenna",
+      "https://unsplash.com/photos/a-man-and-woman-with-headsets-on-looking-at-a-laptop-4GyrlS5-PGM",
+    photographer: "Flipsnack",
+    photographerUrl: "https://unsplash.com/@flipsnack",
   } satisfies AboutImage,
   areas: [
     {

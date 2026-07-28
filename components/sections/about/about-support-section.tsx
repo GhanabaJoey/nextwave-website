@@ -33,7 +33,7 @@ export function AboutSupportSection() {
       />
 
       <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-28">
-        <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-14 xl:gap-16">
+        <div className="lg:grid lg:grid-cols-12 lg:items-stretch lg:gap-14 xl:gap-16">
           <div className="lg:col-span-5">
             <SectionIntro
               eyebrow={eyebrow}
@@ -48,15 +48,15 @@ export function AboutSupportSection() {
             </ul>
           </div>
 
-          <figure className="relative mt-12 lg:col-span-7 lg:mt-0 lg:sticky lg:top-28">
-            <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10">
-              <div className="relative aspect-4/3 min-h-[240px] sm:min-h-[320px] lg:aspect-5/4 lg:min-h-[400px]">
+          <figure className="relative mt-12 flex min-h-0 flex-col lg:col-span-7 lg:mt-0 lg:h-full">
+            <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl ring-1 ring-white/10">
+              <div className="relative aspect-3/2 min-h-[240px] sm:min-h-[280px] lg:aspect-auto lg:h-full lg:min-h-0">
                 <Image
                   src={lifestyleImage.src}
                   alt={lifestyleImage.alt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-center"
+                  className="object-cover object-[58%_48%] lg:object-[60%_46%]"
                 />
                 <div
                   aria-hidden="true"
