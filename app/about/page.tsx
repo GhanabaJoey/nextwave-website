@@ -11,7 +11,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "About",
   description:
-    "Learn about NextWave Creator Network — a TikTok LIVE creator community focused on development, connection, and shared experiences across the UK and Australia.",
+    "Learn about NextWave Creator Network — a TikTok LIVE creator community focused on development, connection, and shared experiences across the United Kingdom & AU+.",
 });
 
 export default function AboutPage() {

@@ -234,11 +234,11 @@ export type CommunityGalleryImage =
 export const communityNetworkContent = {
   eyebrow: "The Network",
   heading: "One community.\nTwo markets.",
-  copy: "NextWave currently brings together a growing creator community across the United Kingdom and Australia.",
+  copy: "NextWave currently brings together a growing creator community across the United Kingdom and AU+.",
   creatorsStat: { value: "40+", label: "Creators" },
   markets: [
     { id: "uk", label: "United Kingdom" },
-    { id: "au", label: "Australia" },
+    { id: "au", label: "AU+" },
   ],
 } as const;
 

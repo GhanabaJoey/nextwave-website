@@ -28,7 +28,7 @@ const geistMono = Geist_Mono({
 });
 
 const defaultDescription =
-  "A creator community helping LIVE creators develop their skills, connect with others and unlock more opportunities across the United Kingdom and Australia.";
+  "A creator community helping LIVE creators develop their skills, connect with others and unlock more opportunities across the United Kingdom and AU+.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),

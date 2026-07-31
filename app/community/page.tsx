@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CommunityCreatorVoicesSection } from "@/components/sections/community/community-creator-voices-section";
 import { CommunityDevelopmentSection } from "@/components/sections/community/community-development-section";
 import { CommunityExperiencesSection } from "@/components/sections/community/community-experiences-section";
 import { CommunityFinalCtaSection } from "@/components/sections/community/community-final-cta-section";
@@ -12,7 +13,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Community & Events",
   description:
-    "Discover the NextWave community — LIVE Wars, creator training, connection and recognition across the United Kingdom and Australia.",
+    "Discover the NextWave community — LIVE Wars, creator training, connection and recognition across the United Kingdom and AU+.",
 });
 
 export default function CommunityPage() {
@@ -25,6 +26,7 @@ export default function CommunityPage() {
       <CommunityDevelopmentSection />
       <CommunityMomentsSection />
       <CommunityNetworkSection />
+      <CommunityCreatorVoicesSection />
       <CommunityFinalCtaSection />
     </>
   );

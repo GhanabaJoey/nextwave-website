@@ -143,10 +143,10 @@ export const aboutMarketsContent = {
   eyebrow: "Our Network",
   heading: "Growing together, across borders.",
   supportingCopy:
-    "NextWave currently supports a growing creator community across the United Kingdom and Australia.",
+    "NextWave currently supports a growing creator community across the United Kingdom and AU+.",
   markets: [
     { id: "uk", label: "United Kingdom" },
-    { id: "au", label: "Australia" },
+    { id: "au", label: "AU+" },
   ],
   stats: [
     { id: "creators", value: "40+", label: "Creators" },

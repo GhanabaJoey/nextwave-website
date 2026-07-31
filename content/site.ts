@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "NextWave Creator Network",
   shortName: "NextWave",
   description:
-    "An established TikTok LIVE creator growth community in the UK and Australia.",
+    "An established TikTok LIVE creator growth community in the United Kingdom & AU+.",
 } as const;
 
 export const headerBrandContent = {

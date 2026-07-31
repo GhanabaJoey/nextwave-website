@@ -7,7 +7,7 @@ export const heroContent = {
     "For creators serious about developing their LIVE presence.",
   trustSignal: {
     creators: "40+ Creators",
-    markets: "United Kingdom • Australia",
+    markets: "United Kingdom • AU+",
   },
   primaryCta: {
     label: "Apply to Join",
@@ -46,7 +46,7 @@ export const networkStatsContent = {
       id: "markets",
       value: "2",
       label: "Markets",
-      description: "United Kingdom and Australia.",
+      description: "United Kingdom and AU+.",
       accent: "primary",
     },
     {
@@ -108,6 +108,13 @@ export const whyNextwaveContent = {
       title: "LIVE Experiences",
       description:
         "Take part in community activities such as LIVE Wars and other shared creator experiences.",
+      accent: "primary",
+    },
+    {
+      id: "free-to-join",
+      title: "Free to Join",
+      description:
+        "Joining NextWave Creator Network is free. Eligible creators continue earning through TikTok LIVE while gaining access to community support, creator development, monthly training, LIVE Wars and exclusive agency opportunities.",
       accent: "primary",
     },
     {
@@ -254,14 +261,6 @@ export const communityPreviewContent = {
 export type CommunityExperience =
   (typeof communityPreviewContent.experiences)[number];
 
-export const testimonialsContent = {
-  eyebrow: "Creator Voices",
-  heading: "Real stories are coming.",
-  copy:
-    "As the NextWave community grows, we'll share experiences and stories directly from creators across the network.",
-  label: "Creator stories coming soon.",
-} as const;
-
 export const faqContent = {
   eyebrow: "FAQ",
   heading: "Questions before you apply?",
@@ -279,10 +278,10 @@ export const faqContent = {
         "Creators who are serious about developing their LIVE presence, staying consistent and becoming active members of a creator community.",
     },
     {
-      id: "countries",
-      question: "Which countries does NextWave currently support?",
+      id: "regions",
+      question: "Which regions does NextWave support?",
       answer:
-        "NextWave currently supports creators in the United Kingdom and Australia.",
+        "NextWave Creator Network currently supports creators across the United Kingdom and eligible AU+ markets. The AU+ region includes Australia and other supported territories within TikTok LIVE's AU+ market. As NextWave grows, additional supported regions may be added.",
     },
     {
       id: "experience-required",

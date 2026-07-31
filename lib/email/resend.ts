@@ -16,6 +16,11 @@ import {
   buildContactNotificationHtml,
   getContactNotificationSubject,
 } from "@/lib/email/contact-notification-email";
+import {
+  buildReviewNotificationHtml,
+  getReviewNotificationSubject,
+} from "@/lib/email/review-notification-email";
+import type { ReviewNotificationData } from "@/lib/reviews/constants";
 import type { CreatorApplicationInsert } from "@/lib/applications/constants";
 
 const FROM_ADDRESS = "NextWave Creator Network <applications@nextwavecreatornetwork.com>";
@@ -115,6 +120,35 @@ export async function sendContactNotificationEmail(
 
   if (error) {
     console.error("Contact notification email failed.");
+    return false;
+  }
+
+  return true;
+}
+
+export async function sendReviewNotificationEmail(
+  review: ReviewNotificationData,
+): Promise<boolean> {
+  const apiKey = getResendApiKey();
+  const recipient = process.env.APPLICATION_NOTIFICATION_EMAIL?.trim();
+
+  if (!apiKey || !recipient) {
+    console.error("Review notification email configuration is missing.");
+    return false;
+  }
+
+  const resend = new Resend(apiKey);
+
+  const { error } = await resend.emails.send({
+    from: FROM_ADDRESS,
+    to: recipient,
+    replyTo: review.email,
+    subject: getReviewNotificationSubject(review),
+    html: buildReviewNotificationHtml(review),
+  });
+
+  if (error) {
+    console.error("Review notification email failed.");
     return false;
   }
 

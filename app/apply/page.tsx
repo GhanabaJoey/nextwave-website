@@ -8,7 +8,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Apply to Join",
   description:
-    "Apply to join NextWave Creator Network — a TikTok LIVE creator community for the United Kingdom and Australia.",
+    "Apply to join NextWave Creator Network — a TikTok LIVE creator community for the United Kingdom and AU+.",
 });
 
 export default function ApplyPage() {

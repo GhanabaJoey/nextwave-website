@@ -1,12 +1,17 @@
-import { testimonialsContent } from "@/content/home";
+import Link from "next/link";
+import { TestimonialCarousel } from "@/components/creator-voices/testimonial-carousel";
 import { SectionIntro } from "@/components/ui/section-intro";
+import { creatorVoicesHomeContent } from "@/content/creator-voices";
+import { getFeaturedTestimonials } from "@/lib/creator-voices/get-reviews";
+import { secondaryCtaClassName } from "@/lib/cta-styles";
 
-export function TestimonialsSection() {
-  const { eyebrow, heading, copy, label } = testimonialsContent;
+export async function TestimonialsSection() {
+  const { eyebrow, heading, supporting, viewAllCta } = creatorVoicesHomeContent;
+  const featuredTestimonials = await getFeaturedTestimonials();
 
   return (
     <section
-      aria-labelledby="testimonials-heading"
+      aria-labelledby="creator-voices-heading"
       className="relative bg-surface-elevated"
     >
       <div
@@ -15,19 +20,20 @@ export function TestimonialsSection() {
       />
 
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20">
-        <div className="max-w-2xl">
-          <SectionIntro
-            eyebrow={eyebrow}
-            heading={heading}
-            headingId="testimonials-heading"
-            variant="elevated"
-          />
-          <p className="mt-4 max-w-xl font-sans text-base leading-relaxed text-text-muted sm:mt-5 sm:text-lg">
-            {copy}
-          </p>
-          <p className="mt-4 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-brand-primary/80">
-            {label}
-          </p>
+        <SectionIntro
+          eyebrow={eyebrow}
+          heading={heading}
+          supporting={supporting}
+          headingId="creator-voices-heading"
+          variant="elevated"
+        />
+
+        <TestimonialCarousel testimonials={featuredTestimonials} />
+
+        <div className="mt-12 flex justify-center lg:mt-14">
+          <Link href={viewAllCta.href} className={secondaryCtaClassName}>
+            {viewAllCta.label}
+          </Link>
         </div>
       </div>
     </section>
